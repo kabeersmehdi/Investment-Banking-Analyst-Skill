@@ -1,557 +1,228 @@
-# ONBOARDING FLOW — /start Command
+# ONBOARDING FLOW v3.1 — Guided + Unstructured
 
-## OVERVIEW
-When the user types /start, the agent walks through a structured
-questionnaire to collect ALL deal information needed to generate
-every output (valuation, CIM, teaser, buyer list, risk report,
-QoE, deal structure).
+## TWO INTAKE PATHS
 
-The agent asks questions in PHASES. Each phase is a conversational
-block — ask 3–5 questions at a time, not all 50 at once.
+### Path A: Guided Onboarding (/start)
+The 7-phase questionnaire (unchanged from v3.0).
+Used when broker wants to be walked through it.
 
-After each phase, confirm answers and move to the next phase.
-After all phases complete, display the DEAL CONTEXT SUMMARY
-and ask for confirmation before proceeding.
+### Path B: Unstructured Dump (Paste Info)
+User pastes deal info in any format. Agent parses it.
+Used when broker already has the info and just wants
+to get moving.
 
----
-
-## PHASE 0: WELCOME
-
-When user types /start, respond with:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚀 M&A ANALYST AGENT — DEAL ONBOARDING
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-I'm going to walk you through everything I need to run
-your deal. This takes about 10 minutes and I'll ask
-questions in 7 phases:
-
-Phase 1: Company Basics
-Phase 2: Financial Performance
-Phase 3: Add-Backs & Normalization
-Phase 4: Customers & Revenue Quality
-Phase 5: Operations & Team
-Phase 6: Deal Parameters
-Phase 7: Broker Notes & Context
-
-After we finish, I'll have everything needed to generate:
-✅ Valuation (with live market comps)
-✅ Full CIM
-✅ Anonymous Teaser
-✅ Buyer List + Outreach
-✅ Risk Report
-✅ QoE Analysis
-✅ Deal Structure Models
-
-You can answer in whatever format is easiest — bullets,
-paragraphs, or just quick answers. I'll organize it.
-
-Ready? Let's go.
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-text
-
-
-Then immediately ask Phase 1 questions.
+### Path C: Hybrid
+User pastes some info, agent parses it, then asks
+remaining questions from the guided flow — but ONLY
+the questions whose answers weren't found in the dump.
 
 ---
 
-## PHASE 1: COMPANY BASICS
-*Required fields marked with (R)*
+## PATH B: UNSTRUCTURED INTAKE PROTOCOL
 
-Ask:
-📋 PHASE 1: COMPANY BASICS
+### Trigger
+Any of these trigger unstructured intake:
+- User pastes a paragraph of deal info after /new [name]
+- User says "here's what I know about this deal"
+- User forwards an email or notes about a business
+- User provides partial info without using /start
+- User says "I have a new deal" and describes it
 
-Company name (or codename if you want to keep it
-anonymous for now): (R)
+### Parsing Engine
 
-What does this business do? Give me 2-3 sentences
-like you'd describe it to a buyer at a cocktail party: (R)
+#### Financial Data Extraction
+Look for patterns:
+- "$X.XM revenue" or "revenue of X" or "top line is X"
+- "$XK SDE" or "seller's discretionary earnings" or "cash flow"
+- "EBITDA of X" or "earnings of X"
+- "profit of X" or "net income X" or "makes X a year"
+- "X employees" or "X people" or "team of X"
+- "X years" or "been around since XXXX" or "founded in XXXX"
+- Any dollar amounts — try to map to the right field
 
-Industry / sector: (R)
-(e.g., HVAC, roofing, SaaS, staffing, manufacturing)
+#### Owner Data Extraction
+Look for:
+- Age mentions ("owner is 62")
+- Role descriptions ("runs sales", "does estimating")
+- Motivation ("wants to retire", "health issues", "burned out")
+- Transition ("willing to stay X months")
+- Family ("wife does the books", "son works there")
+- Hours ("works 60 hours", "part-time", "absentee")
 
-Location — state and metro area: (R)
-(e.g., "Charlotte, North Carolina")
+#### Customer Data Extraction
+Look for:
+- Concentration ("top customer is 20%", "biggest client is X%")
+- Count ("85 customers", "about 100 accounts")
+- Contracts ("no contracts", "MSAs in place")
+- Recurring ("mostly project work", "X% recurring")
 
-How long has this business been operating? (R)
+#### Risk Data Extraction
+Look for negative indicators:
+- "owner does all the sales"
+- "no contracts"
+- "concentrated"
+- "declining"
+- "messy books" or "tax returns only"
+- "lease is up soon"
+- Any phrase suggesting concern
 
-Is this B2B, B2C, or a mix? (R)
+#### Growth Data Extraction
+Look for:
+- "could expand into X"
+- "hasn't done any marketing"
+- "commercial side is untapped"
+- "only serves [geography]"
 
-Take your time — just reply with the answers and I'll
-move to financials next.
+### Parsing Output Format
+
+After parsing, display:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 DEAL INTAKE — PARSED FROM YOUR INPUT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COMPANY BASICS
+Name: [extracted or "Not provided"]
+Industry: [extracted or "Not identified"]
+Location: [extracted or "Not provided"]
+Years in Business: [extracted or "Unknown"]
+Business Model: [extracted or "Unknown"]
+
+FINANCIALS
+Revenue (TTM): [extracted or "Not provided"]
+SDE: [extracted or "Not provided"]
+EBITDA: [extracted or "Not provided"]
+Net Income: [extracted or "Not provided"]
+
+OWNER
+Role: [extracted or "Unknown"]
+Hours/Week: [extracted or "Unknown"]
+Reason for Sale: [extracted or "Unknown"]
+Transition: [extracted or "Unknown"]
+
+CUSTOMERS
+Concentration: [extracted or "Unknown"]
+Contracts: [extracted or "Unknown"]
+Revenue Type: [extracted or "Unknown"]
+
+TEAM
+Employees: [extracted or "Unknown"]
+Has #2: [extracted or "Unknown"]
+
+DEAL PARAMETERS
+Asking Price: [extracted or "TBD"]
+Structure: [extracted or "Unknown"]
+Timeline: [extracted or "Unknown"]
+
+RISKS IDENTIFIED
+⚠️ [any risks detected from language]
+
+GROWTH OPPORTUNITIES
+✅ [any growth levers detected]
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 text
 
 
-After user responds, CONFIRM:
-Got it. Here's what I have for Phase 1:
+Then immediately show gaps:
+MISSING INFORMATION
 
-Company: [X]
-Description: [X]
-Industry: [X]
-Location: [X]
-Years in Business: [X]
-Business Model: [X]
+🔴 CRITICAL — Need these for valuation:
+• [field]: [why it matters]
+• [field]: [why it matters]
 
-Anything wrong? If not, moving to financials.
+🟡 IMPORTANT — Need these for CIM/risk report:
+• [field]
 
-text
+🟢 NICE TO HAVE:
+• [field]
 
-
----
-
-## PHASE 2: FINANCIAL PERFORMANCE
-*All financial fields required*
-
-Ask:
-💰 PHASE 2: FINANCIAL PERFORMANCE
-
-I need 3 years of numbers if you have them. If you only
-have TTM (trailing twelve months), that works — I'll note
-the gap.
-
-Revenue:
-
-TTM (most recent 12 months) revenue: (R)
-Prior year revenue:
-Two years ago revenue:
-Profitability:
-4. TTM Gross Profit (or gross margin %): (R)
-5. TTM Net Income (as reported on tax return or P&L): (R)
-6. TTM SDE (if you've already calculated it):
-7. TTM EBITDA (if you've already calculated it):
-
-If you haven't calculated SDE/EBITDA yet, that's fine —
-I'll build it from the add-backs in the next phase.
-
-Other:
-8. What accounting basis — cash or accrual? (R)
-9. What financial records exist? (R)
-(Tax returns only / QuickBooks P&L / Reviewed / Audited)
-10. Any debt on the books? If so, how much?
-11. Cash on hand (approximate)?
-12. Annual capital expenditure (equipment, vehicles, etc.)?
-
-text
-
-
-After user responds, CONFIRM with a summary table:
-Got it. Here's the financial picture:
-
-Metric	2 Yrs Ago	Prior Yr	TTM
-Revenue	$X	$X	$X
-Gross Profit	—	—	$X (X%)
-Net Income	—	—	$X
-SDE	—	—	[TBD]
-EBITDA	—	—	[TBD]
-Accounting: [Cash/Accrual]
-Records: [Tax returns / QB / etc.]
-Debt: $X
-CapEx: $X/year
-
-Correct? Moving to add-backs next.
+Want to fill these in now? Or I can work with what
+I have and flag assumptions.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 text
 
 
 ---
 
-## PHASE 3: ADD-BACKS & OWNER COMPENSATION
-*Critical for SDE calculation*
+## FIELD REQUIREMENT TIERS
 
-Ask:
-📊 PHASE 3: ADD-BACKS & NORMALIZATION
+### 🔴 CRITICAL (Cannot produce valuation without)
+- Industry
+- Revenue (TTM) — at least one year
+- SDE or EBITDA or Net Income (need at least one to calculate)
+- Owner compensation (to calculate SDE if not provided)
 
-This is where we build the real earnings picture. I need
-to know everything the owner runs through the business
-that a new buyer wouldn't have.
+### 🟡 IMPORTANT (Needed for full CIM + risk)
+- Location
+- Years in business
+- Employee count
+- Owner role and hours
+- Customer concentration (top 1 and top 3 %)
+- Revenue type (recurring vs project)
+- Contracts in place (yes/no)
+- Facility status (owned/leased)
+- Reason for sale
+- Add-backs (itemized with amounts)
 
-Owner Compensation:
-
-What does the owner pay themselves (total comp —
-salary + distributions + benefits)? (R)
-What would you have to pay a GM/manager to replace
-the owner? (R)
-(If you're not sure, give me the owner's role and
-I'll estimate market rate)
-Add-Backs — list everything with approximate amounts:
-3. What personal expenses run through the business? (R)
-Common ones — tell me which apply and the amounts:
-
-□ Personal vehicle(s): $___
-□ Personal cell phone / internet: $___
-□ Health insurance (owner/family): $___
-□ Life insurance: $___
-□ Meals / entertainment (personal): $___
-□ Travel (personal): $___
-□ Family members on payroll (not actually working): $___
-□ Personal legal / accounting: $___
-□ Owner's retirement contributions: $___
-□ Other: $___
-
-Any one-time or non-recurring expenses in the last
-12 months? (R)
-(Lawsuit settlement, equipment repair, move,
-renovation, etc.)
-
-Depreciation & amortization (annual): (R)
-
-Interest expense (annual):
-
-Any above-market rent paid to the owner or
-owner's entity?
-(e.g., owner owns the building and charges
-the business rent)
-
-Anything else a buyer should know about that
-affects the true earnings?
-
-text
-
-
-After user responds, BUILD the SDE/EBITDA:
-Here's your reconstructed earnings:
-
-SELLER'S DISCRETIONARY EARNINGS (SDE)
-
-Item	Amount
-Reported Net Income	$X
-+ Owner Salary/Comp	$X
-+ Personal Vehicle	$X
-+ Personal Cell/Internet	$X
-+ Health Insurance (Owner)	$X
-+ Meals/Entertainment (Personal)	$X
-+ One-Time: [Description]	$X
-+ Depreciation	$X
-+ Amortization	$X
-+ Interest	$X
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━	━━━━━━━━
-TOTAL SDE	$X
-EBITDA (SDE minus market-rate manager salary)
-| SDE | $X |
-| - Market Rate Manager Salary | ($X) |
-| ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ | ━━━━━━━━ |
-| EBITDA | $X |
-
-SDE Margin: X%
-EBITDA Margin: X%
-
-Do these numbers look right to you? This is what
-we'll base the valuation on.
-
-text
-
+### 🟢 NICE TO HAVE (Improves quality)
+- Prior year revenue (2-3 years)
+- Gross profit / gross margin
+- Specific add-back documentation
+- Average customer tenure
+- Seasonality description
+- Key roles on team
+- Growth opportunities (specific)
+- Known risks (itemized)
+- Deal structure preference
+- Target timeline
 
 ---
 
-## PHASE 4: CUSTOMERS & REVENUE QUALITY
-*Critical for multiple selection and risk assessment*
+## PHASE 1-7 GUIDED QUESTIONS (UNCHANGED)
 
-Ask:
-🤝 PHASE 4: CUSTOMERS & REVENUE QUALITY
-
-Customer Concentration:
-
-How many active customers? (R)
-What % of revenue comes from the single largest
-customer? (R)
-What % from the top 3 customers? (R)
-What % from the top 10?
-How long has the top customer been a customer?
-Are there written contracts with major customers? (R)
-If yes, what's the typical length?
-Revenue Type:
-7. What % of revenue is: (R)
-□ Recurring / contracted (auto-renews): ____%
-□ Repeat from same customers (but no contract): ____%
-□ Project-based / one-time: ____%
-
-Is there any seasonality? If so, describe it.
-
-What's the average customer tenure (years)?
-
-Have you lost any significant customers in the
-last 2 years? If so, why?
-
-text
-
-
-After response, CONFIRM:
-Customer Profile:
-
-Metric	Value
-Active Customers	X
-Top 1 Customer	X% rev
-Top 3 Customers	X% rev
-Top 10 Customers	X% rev
-Written Contracts	Yes/No
-Avg Customer Tenure	X years
-Recurring Revenue	X%
-Repeat (No Contract)	X%
-Project / One-Time	X%
-Seasonality	[Desc]
-Lost Major Customers	Yes/No
-[FLAG any concentration risk immediately]
-⚠️ [e.g., "Top customer at 25% — this will be a buyer
-concern. We'll address it in the risk narrative."]
-
-Moving to operations.
-
-text
-
+[Same as v3.0 — Phase 1 through Phase 7]
+[Only asked if /start is used OR to fill gaps after 
+unstructured intake]
 
 ---
 
-## PHASE 5: OPERATIONS & TEAM
-*Critical for owner-dependency assessment*
+## SMART GAP-FILLING
 
-Ask:
-👥 PHASE 5: OPERATIONS & TEAM
+When asking for missing data after unstructured intake,
+DON'T re-ask as a formal questionnaire. Instead, ask
+conversationally:
 
-The Owner:
+INSTEAD OF:
+"Phase 2, Question 4: What is your TTM Gross Profit?"
 
-What is the owner's day-to-day role? (R)
-(Be specific — "runs sales" is different from
-"manages operations")
-How many hours/week does the owner work? (R)
-Why is the owner selling? (R)
-Is the owner willing to stay for a transition?
-If yes, how long? (R)
-Does the owner's spouse or family work in the
-business? If yes, what do they do and would they
-stay post-sale? (R)
-The Team:
-6. How many full-time employees (not counting owner)? (R)
-7. How many part-time / seasonal / contractors?
-8. Is there a manager or #2 person who could run
-day-to-day without the owner? (R)
-9. What key roles exist on the team?
-(e.g., Ops Manager, Office Manager, Sales Rep,
-Lead Technician)
-10. Any key-person risk? (Someone who would be very
-hard to replace?)
-11. What's the employee turnover situation?
+DO THIS:
+"I've got the revenue at $4.2M and SDE at $850K. 
+Quick ones I'm missing:
+- What's the gross profit or gross margin? 
+  (Even a rough % works)
+- How much does the owner pay himself total 
+  (salary + distributions + benefits)?
+- Any debt on the books?"
 
-Facilities:
-12. Does the owner own or lease the facility? (R)
-13. If leased — how many months left on the lease?
-Renewal options? (R)
-14. If owned — is the real estate included in the
-sale or separate?
-
-text
-
-
-After response, CONFIRM and FLAG:
-Operations Summary:
-
-Item	Detail
-Owner's Role	[X]
-Owner Hours/Week	[X]
-Reason for Sale	[X]
-Transition Willingness	[X] months
-Family in Business	[Y/N — detail]
-FT Employees	[X]
-PT / Contractors	[X]
-Has #2 / Manager	[Y/N]
-Key Roles	[List]
-Facility	[Owned/Leased]
-Lease Remaining	[X] months
-⚠️ RISK FLAGS IDENTIFIED:
-[Auto-flag any of these if present:]
-
-Owner works 50+ hours → ⚠️ Owner-dependent
-No #2 person → ⚠️ Key person risk
-Owner does sales → ⚠️ Revenue at risk post-close
-Lease < 24 months → ⚠️ Lease risk
-Spouse works, won't stay → ⚠️ Need replacement cost
-text
-
+Group 3-5 related questions. Don't overwhelm.
 
 ---
 
-## PHASE 6: DEAL PARAMETERS
+## CONTEXT COMPLETION TRACKING
 
-Ask:
-🏷️ PHASE 6: DEAL PARAMETERS
+Track completion % for each deal:
 
-Does the seller have a target asking price?
-If so, what?
-(If not, that's fine — I'll recommend one)
+| Section | Fields | Filled | % |
+|---------|--------|--------|---|
+| Company Basics | 6 | 5 | 83% |
+| Financials | 12 | 8 | 67% |
+| Add-Backs | variable | 4 items | ✓ |
+| Customers | 10 | 6 | 60% |
+| Operations | 14 | 10 | 71% |
+| Deal Parameters | 9 | 5 | 56% |
+| Broker Notes | 7 | 3 | 43% |
+| **OVERALL** | | | **64%** |
 
-What deal structure does the seller prefer? (R)
-□ All cash at close
-□ SBA financing (buyer gets SBA loan)
-□ Seller willing to carry a note (what % max?)
-□ Open to earnout
-□ Flexible / whatever gets it done
-
-Is this business SBA-eligible? (R)
-(Profitable 3+ years, real assets,
-no major legal issues?)
-
-Target timeline — when does the seller want
-to close? (R)
-
-Has the seller worked with a broker before
-on this business?
-
-Is there a non-compete expectation?
-(Years / radius?)
-
-What assets are INCLUDED in the sale?
-(Equipment, inventory, vehicles, IP, contracts)
-
-What's EXCLUDED?
-(Real estate, personal items, cash, AR?)
-
-Any existing offers or buyer interest?
-
-text
-
-
----
-
-## PHASE 7: BROKER CONTEXT & KNOWN ISSUES
-
-Ask:
-📝 PHASE 7: YOUR NOTES & KNOWN ISSUES
-
-Almost done. This is the "everything else" section.
-Be honest here — this stays between us and helps me
-build better materials.
-
-What are the biggest risks or red flags you
-already know about? (R)
-(List them all — I'd rather know now than have
-a buyer find them)
-
-What are the strongest selling points? (R)
-(What makes a buyer want this business?)
-
-What growth opportunities exist that the current
-owner hasn't pursued? (R)
-(Be specific — "could do marketing" is weak.
-"Could add commercial HVAC, which is 40% of the
-market they don't touch" is strong.)
-
-Who do you think the ideal buyer is?
-(Individual operator? Search fund? Strategic? PE?)
-
-What's the seller's personality like?
-(Cooperative? Difficult? Emotional about the
-business? Unrealistic on price?)
-
-Anything else I should know?
-
-What do you want me to generate first?
-Options:
-□ /valuation — Start with the numbers
-□ /cim — Full marketing package
-□ /teaser — Quick anonymous teaser
-□ /buyers — Buyer list and outreach
-□ /risks — Risk assessment
-□ /all — Everything
-□ /readiness — Check if seller is ready to go to market
-□ /screening — Check if this deal is worth taking
-
-text
-
-
----
-
-## ONBOARDING COMPLETE — CONTEXT SUMMARY
-
-After all 7 phases, display:
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅ DEAL ONBOARDING COMPLETE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-PROJECT: [Company Name / Codename]
-INDUSTRY: [Industry]
-LOCATION: [City, State]
-
-FINANCIAL SNAPSHOT:
-
-Metric	TTM	Prior Yr	2 Yrs Ago
-Revenue	$X	$X	$X
-SDE	$X	—	—
-EBITDA	$X	—	—
-SDE Mrgn	X%	—	—
-KEY CHARACTERISTICS:
-• Business Model: [B2B/B2C]
-• Revenue Type: [X% recurring, X% repeat, X% project]
-• Customers: [X active, top 1 = X%, top 3 = X%]
-• Owner Role: [Description]
-• Team: [X FTE, #2 = Y/N]
-• Facility: [Owned/Leased — X months remaining]
-
-DEAL PARAMETERS:
-• Target Price: [$X or TBD]
-• Structure: [SBA / All Cash / Flexible]
-• Timeline: [X months]
-• Transition: [X months]
-
-KNOWN RISKS: [Count] identified
-GROWTH LEVERS: [Count] identified
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-DEAL CONTEXT IS NOW ACTIVE.
-All commands will auto-populate from this data.
-
-What would you like me to generate first?
-
-/valuation /cim /teaser /buyers /risks
-/qoe /structure /readiness /screening /all
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-text
-
-
----
-
-## HANDLING INCOMPLETE ANSWERS
-
-If user skips a required field:
-I noticed you didn't answer [QUESTION].
-This one is required because it directly affects
-[WHAT IT IMPACTS — e.g., "the valuation multiple"
-or "the risk rating"].
-
-Can you provide it, or should I note it as unknown
-and flag it in all outputs?
-
-text
-
-
-If user says "I don't know":
-No problem. I'll flag this as [UNKNOWN] in the deal
-context. Here's what I'll do:
-
-For valuation: I'll use conservative assumptions
-and flag them clearly
-For CIM: I'll leave a placeholder for you to fill in
-For risk report: I'll flag this as a data gap
-You can update it anytime with:
-/update [field name] [new value]
-
-text
-
-
----
-
-## AUTO-PROPAGATION RULES
-
-When DEAL CONTEXT is updated via /update:
-1. Show: "DEAL CONTEXT UPDATED: [field] changed 
-   from [old] to [new]"
-2. List which outputs are affected:
-   "This change affects: /valuation, /cim, /risks"
-3. Ask: "Want me to regenerate any of these now?"
-
-When user provides new information mid-conversation:
-1. Auto-detect if it relates to a DEAL CONTEXT field
-2. Ask: "This sounds like updated info for [FIELD]. 
-   Should I update the deal context?"
-3. If yes, update and flag affected outputs
+Show this in /status and /deals dashboard.
