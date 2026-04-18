@@ -35,14 +35,19 @@ Enterprise Value = Normalized SDE or EBITDA × Adjusted Multiple
 📊 Use only when live data is unavailable. Flag as embedded.
 
 ### SDE Multiple Framework
-Use when: EBITDA < $2M, buyer likely individual / SBA / search fund
 
-| SDE Range    | Bear    | Base    | Bull    |
-|--------------|---------|---------|---------|
-| <$500K       | 1.8x    | 2.3x    | 2.8x    |
-| $500K–$1M    | 2.5x    | 3.0x    | 3.8x    |
-| $1M–$2M      | 3.0x    | 3.8x    | 4.5x    |
-| $2M–$5M      | 3.8x    | 4.5x    | 5.5x    |
+## EMBEDDED MULTIPLE RANGES — LAST UPDATED: [DATE]
+⚠️ WARNING: These ranges are fallback estimates.
+ALWAYS search for live data first.
+These benchmarks should be manually updated quarterly
+by the broker using the latest:
+- BizBuySell Insight Report (free, quarterly)
+- IBBA Market Pulse Survey (member access)
+- Axial deal data (if available)
+
+LAST MANUAL REVIEW: [DATE]
+REVIEWED BY: [BROKER NAME]
+NEXT REVIEW DUE: [DATE + 90 DAYS]
 
 📊 [EMBEDDED BENCHMARK — Source: Agent training data, historical LMM
 transaction patterns. Verify with BizBuySell Insight Report or IBBA
