@@ -33,6 +33,35 @@
 | Bridge / Gap | 10–20% | 2–3yr | 5–7% | No |
 | Performance-Linked | 10–15% | 3–5yr | 4–6% | Partial |
 
+
+
+## SELLER NET PROCEEDS COMPARISON
+
+| Scenario | Gross Price | Broker Fee | Taxes (Est.) | Seller Note (PV) | Net to Seller |
+|----------|-----------|------------|-------------|-----------------|---------------|
+| All Cash | $3.5M | ($280K) | ($640K) | — | $2.58M |
+| SBA + 10% Note | $3.2M | ($256K) | ($576K) | $320K (PV: $285K) | $2.15M + $285K |
+| 75% Cash + Earnout | $3.8M | ($304K) | ($513K) | — | $2.03M + up to $950K |
+
+## BUYER AFFORDABILITY MATRIX
+
+| Asking Price | Down (10%) | Monthly DS | Annual SDE Needed | DSCR |
+|-------------|-----------|-----------|-------------------|------|
+| $2.5M | $250K | $24.5K | $380K+ | 1.30x |
+| $3.0M | $300K | $29.4K | $450K+ | 1.28x |
+| $3.5M | $350K | $34.3K | $530K+ | 1.25x |
+| $4.0M | $400K | $39.2K | $605K+ | 1.22x |
+
+⚠️ SBA typically requires DSCR ≥ 1.25x
+🌐 [Search for current SBA 7(a) rate to populate monthly DS]
+
+
+
+
+
+
+
+
 ### Earnout Framework
 Use earnouts when:
 - Revenue concentration creates retention risk
