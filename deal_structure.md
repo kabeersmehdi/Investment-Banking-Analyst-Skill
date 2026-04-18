@@ -1,84 +1,51 @@
-## Deal Structure Modeling — LMM
+# Deal Structure Models v3.0
 
-### SBA 7(a) Loan Model
+## Auto-populated from DEAL CONTEXT
+
+## SBA 7(a) MODEL
+🌐 Search for current rate before every model.
+
 | Input | Value |
 |-------|-------|
-| Purchase Price | $[X] |
-| Down Payment (10% min) | $[X] |
-| SBA Loan Amount | $[X] |
+| Purchase Price | [from valuation or context] |
+| Down Payment (10%) | [calculated] |
+| SBA Loan Amount | [calculated] |
 | Term | 10 years |
-| Interest Rate | Prime + 2.75% = ~[X]% |
-| Monthly Payment | $[X] |
-| Annual Debt Service | $[X] |
-| Year 1 SDE | $[X] |
-| Post-DS Cash Flow | $[X] |
-| Cash-on-Cash Return | [X]% |
-| DSCR (must be >1.25x) | [X]x |
+| Interest Rate | 🌐 [current Prime + 2.75%] |
+| Monthly Payment | [calculated] |
+| Annual Debt Service | [calculated] |
+| Year 1 SDE | [from context] |
+| Post-DS Cash Flow | [calculated] |
+| Cash-on-Cash Return | [calculated] |
+| DSCR | [calculated] — must be ≥1.25x |
 
-🌐 [Search: "current SBA 7(a) interest rate" before every model]
-🌐 [Search: "SBA 7(a) maximum loan amount 2025"]
-
-### SBA Eligibility Checklist
-- [ ] Business profitable 3+ years
-- [ ] DSCR > 1.25x with historical cash flow
-- [ ] Buyer has 10%+ equity injection (no borrowed down payment)
-- [ ] Goodwill < $500K (or full standby seller note on goodwill)
-- [ ] Total project cost < $5M (7(a) cap)
-- [ ] Seller note on full standby (no payments during SBA term)
-
-### Seller Note Scenarios
-| Scenario | % of Price | Term | Rate | Standby? |
-|----------|-----------|------|------|----------|
-| SBA-Required | 5–10% | 10yr | 0–2% | Full standby |
-| Bridge / Gap | 10–20% | 2–3yr | 5–7% | No |
-| Performance-Linked | 10–15% | 3–5yr | 4–6% | Partial |
-
-
+## SBA ELIGIBILITY CHECK
+Auto-check against DEAL CONTEXT:
+- [ ] Profitable 3+ years → [from context: years in business]
+- [ ] DSCR > 1.25x → [calculated]
+- [ ] Buyer equity injection ≥ 10%
+- [ ] Total project < $5M
+- [ ] Seller note on full standby
 
 ## SELLER NET PROCEEDS COMPARISON
 
-| Scenario | Gross Price | Broker Fee | Taxes (Est.) | Seller Note (PV) | Net to Seller |
-|----------|-----------|------------|-------------|-----------------|---------------|
-| All Cash | $3.5M | ($280K) | ($640K) | — | $2.58M |
-| SBA + 10% Note | $3.2M | ($256K) | ($576K) | $320K (PV: $285K) | $2.15M + $285K |
-| 75% Cash + Earnout | $3.8M | ($304K) | ($513K) | — | $2.03M + up to $950K |
+| Scenario | Gross | Fee | Taxes | Net |
+|----------|-------|-----|-------|-----|
+| All Cash | $X | ($X) | ($X) | $X |
+| SBA + Note | $X | ($X) | ($X) | $X + PV$X |
+| Cash + Earnout | $X | ($X) | ($X) | $X + up to $X |
 
 ## BUYER AFFORDABILITY MATRIX
 
-| Asking Price | Down (10%) | Monthly DS | Annual SDE Needed | DSCR |
-|-------------|-----------|-----------|-------------------|------|
-| $2.5M | $250K | $24.5K | $380K+ | 1.30x |
-| $3.0M | $300K | $29.4K | $450K+ | 1.28x |
-| $3.5M | $350K | $34.3K | $530K+ | 1.25x |
-| $4.0M | $400K | $39.2K | $605K+ | 1.22x |
+| Price | Down | Monthly DS | SDE Needed | DSCR |
+|-------|------|-----------|-----------|------|
+| [range of prices around asking] | | | | |
 
-⚠️ SBA typically requires DSCR ≥ 1.25x
-🌐 [Search for current SBA 7(a) rate to populate monthly DS]
+## EARNOUT FRAMEWORK
+Use when: concentration risk, seller price > buyer value, growth claims
 
-
-
-
-
-
-
-
-### Earnout Framework
-Use earnouts when:
-- Revenue concentration creates retention risk
-- Seller's projections exceed historical trend
-- Gap between seller's price and buyer's valuation > 15%
-
-| Structure | Trigger | Period | Max Payout |
-|-----------|---------|--------|------------|
-| Revenue Retention | >90% of TTM revenue retained | 12–18 months | $[X] |
-| Growth Milestone | Revenue hits $[X] | 24 months | $[X] |
-| Customer Retention | Named accounts retained | 12 months | $[X] |
-
-### Asset vs. Stock Purchase
-| Factor | Asset Sale | Stock Sale |
-|--------|-----------|------------|
-| Buyer Preference | ✅ Preferred (step-up in basis) | ❌ |
-| Seller Preference | ❌ (higher tax) | ✅ (capital gains) |
-| Liability Transfer | No | Yes |
-| Contract Assignment | Required | Automatic |
-| Tax Impact | Model both scenarios | Model both scenarios |
+| Structure | Trigger | Period | Max |
+|-----------|---------|--------|-----|
+| Revenue retention | >90% TTM | 12–18 mo | $X |
+| Growth milestone | Revenue hits $X | 24 mo | $X |
+| Customer retention | Named accounts | 12 mo | $X |
