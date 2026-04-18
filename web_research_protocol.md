@@ -9,6 +9,71 @@ validates sources, and integrates external data into deal outputs.
 ## RESEARCH PRIORITY HIERARCHY
 
 
+## EBITDA BRIDGE (Required for Every Deal)
+
+| Line Item | Reported | Adjustment | Adjusted |
+|-----------|----------|------------|----------|
+| Revenue (as reported) | $X | | $X |
+| (-) Revenue adjustments | | ($X) | |
+|   - One-time project revenue | | ($X) | |
+|   - Related-party revenue | | ($X) | |
+|   - Revenue timing (cash→accrual) | | ($X) | |
+| **Adjusted Revenue** | | | **$X** |
+| (-) COGS (as reported) | ($X) | | |
+| (+) COGS adjustments | | $X | |
+| **Adjusted Gross Profit** | | | **$X** |
+| (-) OpEx (as reported) | ($X) | | |
+| (+) Add-backs (itemized below) | | $X | |
+| (-) Pro forma expenses | | ($X) | |
+|   - Replacement manager salary | | ($X) | |
+|   - Replacement bookkeeper | | ($X) | |
+|   - Market-rate rent (if below) | | ($X) | |
+| **Adjusted EBITDA** | | | **$X** |
+| (-) Maintenance CapEx | | ($X) | |
+| **Unlevered Free Cash Flow** | | | **$X** |
+
+## WORKING CAPITAL ANALYSIS
+
+### NWC Calculation
+NWC = Current Assets (excl. cash) - Current Liabilities (excl. debt)
+
+### NWC Peg
+- Calculate NWC for each of the last 12 months
+- NWC Peg = 12-month average (exclude outliers)
+- At close: if NWC > Peg, buyer pays seller the excess
+- At close: if NWC < Peg, purchase price reduced
+
+### NWC Components to Examine
+| Component | Trend | Notes |
+|-----------|-------|-------|
+| Accounts Receivable | | Aging? Collectibility? |
+| Inventory | | Obsolete? Seasonal buildup? |
+| Prepaid Expenses | | Any unusual items? |
+| Accounts Payable | | Extended terms? |
+| Accrued Liabilities | | Understated? |
+| Deferred Revenue | | Recognized appropriately? |
+
+## REVENUE CUT ANALYSIS
+
+### By Customer (Required)
+Show top 10 customers by revenue, 3-year trend:
+| Customer | Year-2 | Year-1 | TTM | Trend | Risk |
+|----------|--------|--------|-----|-------|------|
+
+### By Month (Required)
+Show monthly revenue for trailing 24 months:
+- Identify seasonality pattern
+- Flag any month with >20% deviation from trailing average
+- Identify any one-time spikes
+
+### By Service Line (If Applicable)
+| Service | Revenue | Margin | Trend | Notes |
+|---------|---------|--------|-------|-------|
+
+
+
+
+
 ## REALISTIC SEARCH SUCCESS RATES
 
 | Data Type | Expected Success | Notes |
