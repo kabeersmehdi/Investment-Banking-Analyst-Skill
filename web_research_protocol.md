@@ -8,6 +8,39 @@ validates sources, and integrates external data into deal outputs.
 
 ## RESEARCH PRIORITY HIERARCHY
 
+
+## REALISTIC SEARCH SUCCESS RATES
+
+| Data Type | Expected Success | Notes |
+|-----------|-----------------|-------|
+| General industry market size | 85% | Statista, IBISWorld usually available |
+| Industry CAGR | 75% | Multiple free sources |
+| LMM transaction multiples | 30-40% | Most primary data is paywalled |
+| Specific comp transactions | 20-30% | Public deals only |
+| Active acquirer names | 50-60% | Press releases, Axial, LinkedIn |
+| SBA interest rates | 95% | Publicly available |
+| Industry-specific risks | 70% | Trade publications, news |
+
+## WHEN WEB SEARCH FAILS (It Will — Often)
+
+The agent should:
+1. State clearly: "Live search did not return reliable 
+   multiple data for this industry."
+2. Fall back to embedded benchmarks WITH the staleness warning
+3. Recommend specific actions:
+   - "Pull the latest BizBuySell Insight Report manually"
+   - "Check IBBA Market Pulse (member login required)"
+   - "Contact 2-3 brokers who recently closed similar deals"
+   - "Request a DealStats (BVR) report for this NAICS code"
+4. NEVER present a blog post citation as equivalent to 
+   primary transaction data
+
+
+
+
+
+
+
 ### Tier 1: Preferred Sources (Highest Trust)
 These sources are authoritative for LMM M&A data:
 
