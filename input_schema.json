@@ -1,0 +1,173 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "M&A Deal Input Schema v2.0",
+  "description": "Input data for valuation, CIM, buyer strategy, and web research",
+  "type": "object",
+  "required": ["industry", "location", "revenue"],
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "description": "Legal or DBA name (omit for anonymized teaser)"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Primary industry — used to trigger live web research"
+    },
+    "sub_industry": {
+      "type": "string",
+      "description": "Specific niche (e.g., commercial roofing vs. residential)"
+    },
+    "naics_code": {
+      "type": "string",
+      "description": "NAICS code if known — improves research precision"
+    },
+    "location": {
+      "type": "object",
+      "properties": {
+        "state": {"type": "string"},
+        "metro": {"type": "string"},
+        "service_area": {"type": "string"}
+      }
+    },
+    "business_model": {
+      "type": "string",
+      "enum": ["B2B", "B2C", "B2B2C", "Subscription", "Project-Based",
+               "Retainer", "Marketplace", "Mixed"]
+    },
+    "years_in_business": {"type": "integer"},
+    "employees": {
+      "type": "object",
+      "properties": {
+        "full_time": {"type": "integer"},
+        "part_time": {"type": "integer"},
+        "contractors": {"type": "integer"}
+      }
+    },
+    "financials": {
+      "type": "object",
+      "properties": {
+        "revenue_ttm": {"type": "number"},
+        "revenue_year_1": {"type": "number"},
+        "revenue_year_2": {"type": "number"},
+        "revenue_year_3": {"type": "number"},
+        "gross_profit_ttm": {"type": "number"},
+        "sde_ttm": {"type": "number"},
+        "ebitda_ttm": {"type": "number"},
+        "net_income_ttm": {"type": "number"},
+        "owner_salary": {"type": "number"},
+        "market_rate_salary": {"type": "number"},
+        "capex_annual": {"type": "number"},
+        "working_capital": {"type": "number"},
+        "total_debt": {"type": "number"},
+        "cash_on_hand": {"type": "number"}
+      }
+    },
+    "add_backs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": {"type": "string"},
+          "amount": {"type": "number"},
+          "recurring": {"type": "boolean"},
+          "documentation_available": {"type": "boolean"}
+        }
+      }
+    },
+    "revenue_quality": {
+      "type": "object",
+      "properties": {
+        "recurring_pct": {"type": "number"},
+        "project_based_pct": {"type": "number"},
+        "contracted_pct": {"type": "number"},
+        "avg_contract_length_months": {"type": "integer"}
+      }
+    },
+    "customer_concentration": {
+      "type": "object",
+      "properties": {
+        "top_customer_pct": {"type": "number"},
+        "top_3_pct": {"type": "number"},
+        "top_10_pct": {"type": "number"},
+        "total_active_customers": {"type": "integer"},
+        "avg_customer_tenure_years": {"type": "number"},
+        "contracts_in_place": {"type": "boolean"}
+      }
+    },
+    "real_estate": {
+      "type": "object",
+      "properties": {
+        "owned": {"type": "boolean"},
+        "included_in_sale": {"type": "boolean"},
+        "lease_remaining_months": {"type": "integer"},
+        "renewal_options": {"type": "boolean"},
+        "estimated_value": {"type": "number"}
+      }
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "involvement": {
+          "type": "string",
+          "enum": ["Absentee", "Part-Time", "Active-Manager",
+                   "Owner-Operator", "Sole-Operator"]
+        },
+        "hours_per_week": {"type": "integer"},
+        "primary_role": {"type": "string"},
+        "willing_to_stay": {"type": "boolean"},
+        "transition_months": {"type": "integer"},
+        "reason_for_sale": {"type": "string"}
+      }
+    },
+    "management_team": {
+      "type": "object",
+      "properties": {
+        "depth": {
+          "type": "string",
+          "enum": ["None", "Thin", "Moderate", "Strong"]
+        },
+        "key_roles_filled": {"type": "array", "items": {"type": "string"}},
+        "retention_risk": {"type": "string",
+          "enum": ["Low", "Medium", "High"]}
+      }
+    },
+    "deal_parameters": {
+      "type": "object",
+      "properties": {
+        "asking_price": {"type": "number"},
+        "structure_preference": {
+          "type": "string",
+          "enum": ["All Cash", "SBA Eligible", "Seller Note OK",
+                   "Earnout OK", "Flexible"]
+        },
+        "seller_note_max_pct": {"type": "number"},
+        "target_close_months": {"type": "integer"},
+        "sba_eligible": {"type": "boolean"}
+      }
+    },
+    "research_requests": {
+      "type": "object",
+      "description": "Specify what live research to prioritize",
+      "properties": {
+        "fetch_industry_multiples": {"type": "boolean", "default": true},
+        "fetch_market_size": {"type": "boolean", "default": true},
+        "fetch_active_buyers": {"type": "boolean", "default": true},
+        "fetch_recent_transactions": {"type": "boolean", "default": true},
+        "fetch_industry_risks": {"type": "boolean", "default": true},
+        "fetch_sba_rates": {"type": "boolean", "default": true}
+      }
+    },
+    "known_risks": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "growth_opportunities": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional context, sensitivities, broker notes"
+    }
+  }
+}
