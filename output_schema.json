@@ -1,49 +1,33 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "M&A Analyst Agent Output Schema v2.0",
+  "title": "M&A Analyst Agent Output Schema v3.0",
   "type": "object",
   "properties": {
-    "research_summary": {
+    "deal_context_status": {
       "type": "object",
       "properties": {
-        "searches_executed": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "query": {"type": "string"},
-              "result_status": {
-                "type": "string",
-                "enum": ["Found", "Partial", "No Results"]
-              },
-              "sources_retrieved": {"type": "integer"}
-            }
-          }
-        },
-        "research_quality_score": {"type": "number"},
-        "live_sources_count": {"type": "integer"},
-        "embedded_benchmarks_count": {"type": "integer"}
+        "onboarding_complete": {"type": "boolean"},
+        "required_fields_missing": {"type": "array", "items": {"type": "string"}},
+        "outputs_generated": {"type": "array", "items": {"type": "string"}},
+        "last_updated": {"type": "string"}
       }
     },
-    "valuation_summary": {
+    "valuation": {
       "type": "object",
       "properties": {
         "normalized_sde": {"type": "number"},
         "normalized_ebitda": {"type": "number"},
-        "primary_methodology": {"type": "string"},
-        "live_multiple_source": {"type": "string"},
+        "revenue_quality_score": {"type": "number"},
         "multiple_range": {
           "type": "object",
           "properties": {
             "low": {"type": "number"},
             "mid": {"type": "number"},
             "high": {"type": "number"},
-            "data_type": {
-              "type": "string",
-              "enum": ["Live", "Embedded", "Mixed"]
-            }
+            "source_type": {"type": "string"}
           }
         },
+        "adjustments_applied": {"type": "array", "items": {"type": "string"}},
         "enterprise_value_range": {
           "type": "object",
           "properties": {
@@ -53,185 +37,49 @@
           }
         },
         "recommended_asking_price": {"type": "number"},
-        "confidence_level": {
-          "type": "string",
-          "enum": ["HIGH", "MEDIUM", "LOW"]
-        },
-        "key_value_drivers": {
-          "type": "array",
-          "items": {"type": "string"}
-        },
-        "valuation_risks": {
-          "type": "array",
-          "items": {"type": "string"}
-        },
-        "sources": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "name": {"type": "string"},
-              "url": {"type": "string"},
-              "date_accessed": {"type": "string"},
-              "data_extracted": {"type": "string"},
-              "tier": {"type": "integer"}
-            }
-          }
+        "confidence": {"type": "string"},
+        "sources": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "risk_auto_flags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "risk": {"type": "string"},
+          "severity": {"type": "string"},
+          "source_field": {"type": "string"},
+          "mitigation": {"type": "string"}
         }
       }
     },
-    "financial_normalization": {
+    "sba_feasibility": {
       "type": "object",
       "properties": {
-        "reported_revenue": {"type": "number"},
-        "add_backs_applied": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "item": {"type": "string"},
-              "amount": {"type": "number"},
-              "justification": {"type": "string"},
-              "documentation": {"type": "string"}
-            }
-          }
-        },
-        "normalized_sde": {"type": "number"},
-        "normalized_ebitda": {"type": "number"},
-        "industry_margin_benchmark": {
-          "type": "object",
-          "properties": {
-            "gross_margin_benchmark": {"type": "number"},
-            "ebitda_margin_benchmark": {"type": "number"},
-            "source": {"type": "string"},
-            "source_url": {"type": "string"}
-          }
-        },
-        "flags": {"type": "array", "items": {"type": "string"}}
+        "eligible": {"type": "boolean"},
+        "dscr": {"type": "number"},
+        "monthly_payment": {"type": "number"},
+        "post_ds_cash_flow": {"type": "number"},
+        "current_rate": {"type": "number"},
+        "rate_source": {"type": "string"}
       }
     },
-    "industry_overview": {
+    "seller_readiness": {
       "type": "object",
       "properties": {
-        "market_size_usd": {"type": "number"},
-        "market_size_source": {"type": "string"},
-        "market_size_url": {"type": "string"},
-        "cagr_pct": {"type": "number"},
-        "cagr_source": {"type": "string"},
-        "cagr_url": {"type": "string"},
-        "key_trends": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "trend": {"type": "string"},
-              "source": {"type": "string"},
-              "url": {"type": "string"}
-            }
-          }
-        },
-        "ma_activity_summary": {"type": "string"},
-        "ma_activity_source": {"type": "string"}
-      }
-    },
-    "risk_analysis": {
-      "type": "object",
-      "properties": {
-        "overall_risk_rating": {
-          "type": "string",
-          "enum": ["Low", "Medium", "High"]
-        },
-        "risks": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "category": {"type": "string"},
-              "risk": {"type": "string"},
-              "severity": {
-                "type": "string",
-                "enum": ["Low", "Medium", "High", "Deal-Risk",
-                         "Deal-Killer"]
-              },
-              "mitigation_narrative": {"type": "string"},
-              "live_sourced": {"type": "boolean"},
-              "source": {"type": "string"}
-            }
-          }
-        },
-        "estimated_multiple_discount": {"type": "number"}
-      }
-    },
-    "buyer_strategy": {
-      "type": "object",
-      "properties": {
-        "primary_buyer_persona": {"type": "string"},
-        "secondary_personas": {
-          "type": "array",
-          "items": {"type": "string"}
-        },
-        "live_buyer_research": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "buyer_name_or_type": {"type": "string"},
-              "source": {"type": "string"},
-              "url": {"type": "string"},
-              "recent_activity": {"type": "string"},
-              "fit_rationale": {"type": "string"},
-              "outreach_angle": {"type": "string"}
-            }
-          }
-        },
-        "outreach_templates": {
-          "type": "object",
-          "properties": {
-            "individual_buyer": {"type": "string"},
-            "search_fund": {"type": "string"},
-            "strategic": {"type": "string"},
-            "financial_buyer": {"type": "string"}
-          }
-        },
-        "follow_up_sequence": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "day": {"type": "integer"},
-              "action": {"type": "string"},
-              "message": {"type": "string"}
-            }
-          }
-        }
+        "ready_items": {"type": "array", "items": {"type": "string"}},
+        "gaps": {"type": "array", "items": {"type": "string"}},
+        "blockers": {"type": "array", "items": {"type": "string"}},
+        "weeks_to_market_ready": {"type": "integer"}
       }
     },
     "master_source_log": {
       "type": "object",
       "properties": {
-        "generated_date": {"type": "string"},
-        "total_live_sources": {"type": "integer"},
-        "total_embedded_benchmarks": {"type": "integer"},
-        "research_quality_score": {"type": "number"},
-        "sources": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {"type": "integer"},
-              "section": {"type": "string"},
-              "name": {"type": "string"},
-              "url": {"type": "string"},
-              "date_accessed": {"type": "string"},
-              "data_extracted": {"type": "string"},
-              "tier": {"type": "integer"},
-              "live_or_embedded": {
-                "type": "string",
-                "enum": ["Live", "Embedded"]
-              }
-            }
-          }
-        }
+        "live_sources": {"type": "integer"},
+        "embedded_benchmarks": {"type": "integer"},
+        "quality_score": {"type": "number"},
+        "sources": {"type": "array", "items": {"type": "object"}}
       }
     }
   }
