@@ -9,6 +9,23 @@ Every non-trivial factual claim in any output must be:
 
 ---
 
+# SIMPLIFIED CITATION APPROACH
+
+## For Internal Work Product (Valuation Memos, Risk Reports)
+- Inline: Just use [Source Name, Date] after the claim
+- End of document: Full source list with URLs
+
+## For Client-Facing Materials (CIM, Teaser)
+- NO inline citations (clutters the document)
+- Industry data presented as fact with source available on request
+- Source list maintained internally, not in the CIM
+- Add footnote: "Industry data sourced from [Source Names]. 
+  Details available upon request."
+
+
+
+---
+
 ## WHAT REQUIRES CITATION
 
 ### Always Cite
