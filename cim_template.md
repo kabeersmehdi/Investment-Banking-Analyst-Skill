@@ -1,4 +1,4 @@
-# CIM Template — Confidential Information Memorandum 
+# CIM Template — Confidential Information Memorandum v2.0
 
 ## DOCUMENT HEADER
 **CONFIDENTIAL INFORMATION MEMORANDUM**
@@ -278,4 +278,28 @@ Note: SBA interest rate as of [DATE]: [RATE]%
 - [ ] 3-year tax returns
 - [ ] TTM income statement
 - [ ] Add-back schedule with documentation
-- [ ] Balance sheet (most 
+- [ ] Balance sheet (most recent)
+- [ ] Customer list (anonymized)
+- [ ] Revenue by customer (3 years)
+- [ ] Equipment list and condition
+- [ ] Lease abstracts
+- [ ] Key contracts summary
+- [ ] Org chart
+- [ ] Insurance certificates
+
+---
+
+## END OF CIM — MASTER SOURCE LOG
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📚 MASTER SOURCE LOG — [Company / Project Codename]
+Generated: [Date] | Prepared by: [Broker/Firm]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[Full numbered source list across all sections]
+
+EMBEDDED BENCHMARKS USED:
+[List any embedded data points used as fallback]
+
+RESEARCH QUALITY SCORE: [X/10]
+Live Sources: [X] | Embedded: [X] | Unverified: [X]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
