@@ -1,147 +1,173 @@
-# M&A Analyst Agent v3.1
+# M&A Analyst Agent v3.2
 
-**Lower Middle Market | Sell-Side | Production-Grade**
+**Lower Middle Market · Sell-Side · Production-Grade**
 
-An AI analyst for sell-side M&A brokers in the lower middle market ($1M–$5M EBITDA).
-Replaces 15–25 hours of analyst work per deal.
+An AI deal execution engine for sell-side M&A brokers in the lower middle market ($1M–$5M EBITDA). Replaces 15–25 hours of analyst work per deal.
 
 ---
 
 ## Table of Contents
 
-1. [Overview](#overview)
-2. [Quick Start](#quick-start)
-3. [Commands](#commands)
-4. [Deal Onboarding](#deal-onboarding)
-5. [Multi-Deal Management](#multi-deal-management)
-6. [Unstructured Intake](#unstructured-intake)
-7. [Auto-Propagation](#auto-propagation)
-8. [Deal Lifecycle](#deal-lifecycle)
-9. [File Index](#file-index)
-10. [Setup Checklist](#setup-checklist)
-11. [API Integration](#api-integration)
-12. [Maintenance](#maintenance)
-13. [Limitations](#limitations)
-14. [Customization & Support](#customization--support)
+1.  [What This Does](#1-what-this-does)
+2.  [Quick Start](#2-quick-start)
+3.  [Commands](#3-commands)
+4.  [Deal Onboarding](#4-deal-onboarding)
+5.  [Multi-Deal Management](#5-multi-deal-management)
+6.  [Unstructured Intake](#6-unstructured-intake)
+7.  [Deal Memory & Consistency](#7-deal-memory--consistency)
+8.  [Investment Thesis & Strategy](#8-investment-thesis--strategy)
+9.  [Quality Assurance](#9-quality-assurance)
+10. [Auto-Propagation](#10-auto-propagation)
+11. [Deal Lifecycle](#11-deal-lifecycle)
+12. [File Index](#12-file-index)
+13. [Setup Checklist](#13-setup-checklist)
+14. [API Integration](#14-api-integration)
+15. [Maintenance](#15-maintenance)
+16. [Limitations](#16-limitations)
+17. [Customization](#17-customization)
+18. [Version History](#18-version-history)
 
 ---
 
-## Overview
+## 1. What This Does
 
-### What It Does
+### Capabilities
 
 | Capability | Description |
 |-----------|-------------|
-| **Valuation** | SDE/EBITDA multiples with live market comps, scenario analysis |
-| **CIM Generation** | Full 8-section CIM with live industry data |
+| **Valuation** | SDE/EBITDA multiples with live market comps, scenario analysis (bear/base/bull) |
+| **Investment Thesis** | Buyer-facing narrative: headline, 3 reasons to buy, why now, fear neutralizers |
+| **Deal Strategy** | Market clearing price, buyer ranking, deal killers, process plan, negotiation leverage |
+| **CIM Generation** | Full 8-section Confidential Information Memorandum with live industry data |
 | **Teaser Creation** | Anonymous 1-page buyer-facing teaser |
-| **Buyer Targeting** | Persona matching, live acquirer research, outreach emails |
-| **Risk Analysis** | Auto-detected flags with severity ratings and narratives |
-| **Quality of Earnings** | EBITDA bridge, NWC analysis, revenue cuts |
-| **Deal Structuring** | SBA modeling, seller notes, earnouts, buyer affordability |
-| **LOI Evaluation** | Offer comparison, deal certainty scoring, red flags |
-| **Seller Readiness** | Pre-market checklist with gap identification |
-| **Deal Screening** | Should you take this engagement? Fee economics check |
+| **Buyer Targeting** | Persona matching, live acquirer research, outreach emails, follow-up sequences |
+| **Risk Analysis** | Auto-detected flags with severity ratings and mitigation narratives |
+| **Quality of Earnings** | EBITDA bridge, NWC analysis, revenue cuts, pro forma P&L |
+| **Deal Structuring** | SBA modeling, seller notes, earnouts, buyer affordability matrix |
+| **LOI Evaluation** | Offer comparison, deal certainty scoring, red flag identification |
+| **Seller Readiness** | Pre-market checklist with gap identification and timeline |
+| **Deal Screening** | Should you take this engagement? Fee economics and marketability |
+| **QA System** | 5-level consistency and quality checks across all outputs |
 
 ### Key Features
 
-- **`/start`** — Interactive onboarding asks every question for you
-- **Paste anything** — Dump unstructured notes and the agent parses them
-- **Multi-deal** — Manage your entire pipeline in one conversation
-- **Live research** — Searches the web for current multiples, buyers, and trends
-- **Auto-propagation** — Update one field, all affected outputs get flagged
-- **Source citations** — Every market data point is cited or flagged as embedded
+| Feature | What It Means |
+|---------|--------------|
+| `/start` onboarding | Agent asks every question — you just answer |
+| Unstructured intake | Paste notes, emails, bullets — agent parses automatically |
+| Multi-deal pipeline | Manage all active deals in one conversation with `/deals` dashboard |
+| Deal Memory | Single source of truth — numbers never contradict across outputs |
+| Investment thesis | Every deal gets a compelling buyer narrative, not just analysis |
+| Deal strategy | Agent advises on pricing, buyer ranking, deal killers, negotiation |
+| Live web research | Searches for current multiples, market data, active buyers |
+| Auto-propagation | Update one field, all affected outputs get flagged |
+| QA system | 5-level check catches number errors, narrative contradictions, and weak claims |
+| Source citations | Every market data point is cited or flagged as an embedded benchmark |
 
 ---
 
-## Quick Start
+## 2. Quick Start
 
 **Time to set up: 10 minutes. No code required.**
 
-### Step 1: Create Project
-Go to [claude.ai](https://claude.ai) → Projects → Create Project → Name it `M&A Analyst Agent`
+| Step | Action |
+|------|--------|
+| 1 | Go to [claude.ai](https://claude.ai) → **Projects** → **Create Project** → Name it `M&A Analyst Agent` |
+| 2 | Copy contents of `system_prompt.md` → Paste into **Custom Instructions** |
+| 3 | Upload all `.md` files from the [File Index](#12-file-index) to **Project Knowledge** |
+| 4 | Enable **web search** in Claude settings |
+| 5 | Open a conversation and type `/new [deal name]` |
 
-### Step 2: Set Custom Instructions
-Copy the entire contents of `system_prompt.md` → Paste into **Custom Instructions**
-
-### Step 3: Upload Knowledge Files
-Upload all `.md` files listed in the [File Index](#file-index) to **Project Knowledge**
-
-### Step 4: Enable Web Search
-Turn on web search in Claude settings
-
-### Step 5: Start
-Open a new conversation and type:
-
-```
-/new ABC Roofing
-```
-
-Then either type `/start` for guided onboarding, or paste everything you know about the deal.
+Then either type `/start` for guided onboarding, or paste everything you know about the deal. The agent takes over from there.
 
 ---
 
-## Commands
+## 3. Commands
 
-DEAL MANAGEMENT
-  /new [name]           Create new deal
-  /deals                Pipeline dashboard
-  /deals all            Include archived
-  /deal [name]          Switch active deal
-  /archive [name]       Archive deal
-  /rename [old] [new]   Rename deal
-  /compare [a] [b]      Compare two deals
+### Deal Management
 
-ONBOARDING
-  /start                Guided 7-phase questionnaire
-  (or just paste info)  Agent parses automatically
+| Command | What It Does |
+|---------|-------------|
+| `/new [name]` | Create a new deal and make it active |
+| `/deals` | Show pipeline dashboard of all active deals |
+| `/deals all` | Include archived deals in dashboard |
+| `/deal [name]` | Switch active deal (fuzzy matching supported) |
+| `/archive [name]` | Archive a deal with reason (closed / dead / paused) |
+| `/rename [old] [new]` | Rename a deal |
+| `/compare [a] [b]` | Side-by-side comparison of two deals |
 
-ANALYSIS
-  /valuation            Valuation with live comps
-  /cim                  Full CIM
-  /teaser               Anonymous teaser
-  /buyers               Buyer list + outreach
-  /risks                Risk report
-  /qoe                  Quality of Earnings
-  /structure            Deal structure models
-  /all                  Generate everything
+### Onboarding
 
-STRATEGY (NEW)
-  /strategy             Full deal strategy
-  /thesis               Investment thesis
-  /timeline             Deal event history
+| Command | What It Does |
+|---------|-------------|
+| `/start` | Launch guided 7-phase questionnaire |
+| *(paste info)* | Agent parses unstructured text automatically |
 
-EVALUATION
-  /loi [terms]          Evaluate LOI(s)
-  /readiness            Seller readiness check
-  /screening            Engagement screening
+### Analysis
 
-QUALITY (NEW)
-  /check                Quick consistency check
-  /qa                   Full 5-level QA
+| Command | What It Does |
+|---------|-------------|
+| `/valuation` | Full valuation with live comps + bear/base/bull scenarios |
+| `/cim` | Complete CIM with live industry data |
+| `/teaser` | Anonymous 1-page teaser |
+| `/buyers` | Buyer list + outreach emails with live acquirer research |
+| `/risks` | Risk report with auto-detected flags |
+| `/qoe` | Quality of Earnings analysis |
+| `/structure` | SBA model + deal structure scenarios |
+| `/all` | Generate all of the above |
 
-CONTEXT
-  /status               Deal summary + outputs
-  /update [field] [val] Update field
-  /gaps                 Show missing fields
-  /export               Export as JSON
+### Strategy
+
+| Command | What It Does |
+|---------|-------------|
+| `/strategy` | Full deal strategy: clearing price, buyer ranking, deal killers, process plan, negotiation leverage |
+| `/thesis` | Generate or regenerate the investment thesis |
+| `/timeline` | Show deal event history |
+
+### Evaluation
+
+| Command | What It Does |
+|---------|-------------|
+| `/loi [terms]` | Evaluate one or more LOIs against deal context |
+| `/readiness` | Seller readiness assessment |
+| `/screening` | Should we take this engagement? |
+
+### Quality
+
+| Command | What It Does |
+|---------|-------------|
+| `/check` | Quick consistency check — numbers match across all outputs? |
+| `/qa` | Full 5-level quality assurance (numbers, narrative, logic, completeness, anti-BS) |
+
+### Context
+
+| Command | What It Does |
+|---------|-------------|
+| `/status` | Show deal context summary + which outputs have been generated |
+| `/update [field] [value]` | Update a field — flags all affected outputs |
+| `/gaps` | Show all missing or incomplete fields |
+| `/export` | Export deal context as JSON |
 
 ### Examples
 
 ```
-/new Charlotte Roofing              → Creates new deal
-/start                              → Guided onboarding
+/new Charlotte Roofing              → Creates new deal, prompts for info
+/start                              → Launches guided onboarding
 /valuation                          → Bear/base/bull with live comps
-/update revenue_ttm 4500000         → Updates context, flags changes
+/strategy                           → Clearing price + buyer ranking + deal killers
+/thesis                             → Investment thesis with fear neutralizers
+/update revenue_ttm 4500000         → Updates context, flags affected outputs
 /deal summit                        → Switches to "Project Summit"
 /deals                              → Shows full pipeline dashboard
-/loi All cash $3.2M, 45-day DD     → Evaluates LOI against context
+/loi All cash $3.2M, 45-day DD     → Evaluates LOI against deal context
 /compare ABC Metro                  → Side-by-side deal comparison
+/qa                                 → Full quality check before sending to buyers
+/check                              → Quick number consistency verification
 ```
 
 ---
 
-## Deal Onboarding
+## 4. Deal Onboarding
 
 ### Guided Path (`/start`)
 
@@ -169,22 +195,23 @@ After each phase, the agent confirms your answers. After all 7 phases, you get a
 | Calculates EBITDA | Phase 3 answers | SDE minus market-rate salary |
 | Scores revenue quality | Phase 4 answers | 1–10 score → multiple impact |
 | Detects risks | All phases | Auto-flagged ⚠️ list |
+| Generates investment thesis | All phases | Headline + 3 reasons + why now + fear neutralizers |
 | Matches buyer persona | Phases 2+4+5+6 | Primary + secondary buyer type |
 | Checks SBA feasibility | Phases 2+3+6 | DSCR calculation |
-| Identifies data gaps | All phases | Missing items flagged |
+| Identifies data gaps | All phases | Missing items flagged by priority |
 
 ---
 
-## Multi-Deal Management
+## 5. Multi-Deal Management
 
-Brokers run multiple deals at once. This agent handles that.
+Brokers run 5–15 deals at once. This agent manages the full pipeline.
 
 ### Dashboard (`/deals`)
 
 ```
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📊 DEAL DASHBOARD
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   #  Deal Name          Industry    Revenue   SDE     Stage         Data
   ─  ─────────          ────────    ───────   ───     ─────         ────
@@ -194,7 +221,7 @@ Brokers run multiple deals at once. This agent handles that.
   4  Lakeside Plumbing  Plumbing    $3.5M     $620K   LOI STAGE     100%
 
 → = Active Deal | Archived: 2 (type /deals all)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 ### Switching Deals
@@ -209,7 +236,7 @@ The agent uses fuzzy matching — you don't need exact names:
 | `"what about the roofing deal?"` | ABC Roofing (auto-detected) |
 | `"that HVAC one in Atlanta"` | Metro HVAC |
 
-When you switch, the agent shows a brief summary of the deal you're now working on.
+When you switch, the agent shows a brief summary of the deal and its current stage.
 
 ### Comparing Deals
 
@@ -217,15 +244,15 @@ When you switch, the agent shows a brief summary of the deal you're now working 
 /compare ABC Metro
 ```
 
-Produces a side-by-side table comparing financials, valuation, risk rating, data completeness, and key differences.
+Produces a side-by-side table: financials, valuation, risk rating, data completeness, and key differences between two deals.
 
 ---
 
-## Unstructured Intake
+## 6. Unstructured Intake
 
 You don't have to use the guided questionnaire. Just paste whatever you have.
 
-### How It Works
+### Example: Quick Dump
 
 ```
 /new Charlotte Roofing
@@ -240,10 +267,20 @@ deal. Wife does the books part-time but won't stay.
 
 **The agent will:**
 1. Parse every data point from your text
-2. Organize it into the standard deal context format
+2. Organize it into the standard deal context
 3. Show you what it captured
 4. Tell you exactly what's missing, grouped by priority
 5. Ask: fill in gaps now, or work with what you have?
+
+### Example: Partial Info + Question
+
+```
+/new Quick Screen
+
+HVAC company, $3M revenue, owner wants $5M for it. Is that realistic?
+```
+
+The agent creates the deal, notes the gaps, and gives you a directional answer immediately — flagging every assumption.
 
 ### What the Parser Catches
 
@@ -254,81 +291,188 @@ deal. Wife does the books part-time but won't stay.
 | Employees | "22 employees", "team of 22", "22 people" |
 | Years | "18 years", "since 2006", "been around 18 years" |
 | Location | "Charlotte NC", "in North Carolina", "Charlotte area" |
-| Owner age | "owner is 62", "he's 62" |
-| Owner role | "does all the sales", "runs everything" |
-| Motivation | "wants to retire", "burned out", "health" |
-| Concentration | "top 3 are 40%", "biggest customer is 20%" |
-| Contracts | "no contracts", "MSAs in place", "handshake deals" |
-| Structure | "SBA eligible", "wants all cash", "open to seller note" |
+| Owner info | "owner is 62", "does all the sales", "wants to retire" |
+| Customers | "top 3 are 40%", "biggest customer is 20%", "no contracts" |
+| Deal terms | "SBA eligible", "wants all cash", "open to seller note" |
 | Risks | "messy books", "owner dependent", "lease is up" |
 | Growth | "could expand to commercial", "hasn't done marketing" |
 
-### Partial Info Works Too
+---
 
-```
-/new Quick Screen
+## 7. Deal Memory & Consistency
 
-HVAC company, $3M revenue, owner wants $5M for it. Is that realistic?
-```
+### The Problem This Solves
 
-The agent creates the deal, notes the data gaps, and still gives you a directional answer using what it has — flagging every assumption.
+In M&A, if the CIM says EBITDA is $700K but the valuation uses $710K, the deal loses credibility. The Deal Memory Layer prevents this.
+
+### How It Works
+
+After onboarding (guided or unstructured), the agent builds a **Deal Memory** — a single source of truth for every number, fact, and narrative in the deal. Every output reads from Deal Memory. Nothing contradicts it.
+
+### Consistency Rules
+
+| Rule | What It Means |
+|------|--------------|
+| **One Number, One Source** | Every financial figure in every output matches Deal Memory exactly |
+| **SDE/EBITDA Lock** | Once calculated, the same SDE and EBITDA appear in valuation, CIM, teaser, buyer emails, SBA model, LOI evaluation |
+| **Adjustment Consistency** | Add-backs appear identically in QoE, CIM, and valuation — same description, same dollar amount |
+| **Risk Consistency** | If a risk is in Deal Memory, it appears in the risk report AND the CIM AND buyer targeting |
+| **Growth Consistency** | Growth levers described the same way in CIM, teaser, thesis, and valuation |
+| **Narrative Consistency** | Investment thesis headline and core story reflected in every buyer-facing document |
+
+### Consistency Commands
+
+| Command | What It Does |
+|---------|-------------|
+| `/check` | Quick pass: do all numbers match across generated outputs? |
+| `/qa` | Full 5-level check (see [Quality Assurance](#9-quality-assurance)) |
 
 ---
 
-## Auto-Propagation
+## 8. Investment Thesis & Strategy
 
-When you update any field with `/update`, the agent tells you which outputs are affected:
+### Investment Thesis (`/thesis`)
+
+Every deal gets a buyer-facing narrative — not just analysis. The thesis answers three questions buyers ask in the first 30 seconds:
+
+| Question | Thesis Component |
+|----------|-----------------|
+| Why should I buy THIS business? | **Headline** — one sentence that makes a buyer lean in |
+| What am I really getting? | **Three Reasons to Buy** — specific, evidence-backed, memorable |
+| Why should I buy it NOW? | **Why Now** — seller motivation + market timing + business momentum |
+
+The thesis also pre-builds **Buyer Fear Neutralizers** — for every risk in Deal Memory, a proactive narrative that addresses what buyers will worry about before they bring it up.
+
+### Thesis Consistency
+
+The investment thesis drives all marketing materials:
+
+| Document | How Thesis Appears |
+|----------|-------------------|
+| CIM Executive Summary | Headline as opening line, three reasons as investment highlights |
+| Teaser | Headline adapted for anonymous format, three reasons as key highlights |
+| Buyer Outreach Email | Headline as subject line hook, top reason in body |
+| CIM Buyer Rationale | Full thesis with supporting evidence |
+| Valuation Summary | Three reasons referenced as key value drivers |
+
+### Deal Strategy (`/strategy`)
+
+Goes beyond analysis to strategic advice:
+
+| Strategy Component | What It Answers |
+|-------------------|----------------|
+| **Market Clearing Price** | What will a buyer ACTUALLY pay? (not just what multiples say) |
+| **Buyer Ranking** | Who is most likely to close? Scored by affordability, fit, capability, certainty, willingness to pay |
+| **Top 3 Deal Killers** | What will kill this deal + prevention plan for each |
+| **Process Strategy** | How to run the sell-side process: broad vs. targeted vs. curated |
+| **Negotiation Leverage Map** | Seller leverage vs. buyer leverage, with response scripts |
+
+---
+
+## 9. Quality Assurance
+
+### The QA System (`/qa`)
+
+Before anything goes to a buyer, the agent runs a 5-level quality check:
+
+| Level | What It Checks | Catches |
+|-------|---------------|---------|
+| **1. Numbers** | Every financial figure matches Deal Memory across all outputs | CIM says $710K but valuation says $700K |
+| **2. Narrative** | Thesis, risks, growth levers consistent across all documents | CIM tells one story, teaser tells another |
+| **3. Logic** | Margins reasonable, growth claims match data, no contradictions | "Strong management team" but no #2 exists |
+| **4. Completeness** | All required CIM sections present, all data cited | Missing industry overview, unsourced claims |
+| **5. Anti-BS** | Every claim has evidence in Deal Memory | "Diversified customer base" but top 3 = 50% |
+
+### QA Output
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ QA CHECK — ABC Roofing
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+NUMBERS:     ✅ All consistent (12/12 passed)
+NARRATIVE:   ✅ All consistent (8/8 passed)
+LOGIC:       ⚠️ 1 flag (add-backs at 38% of net income)
+COMPLETE:    ✅ All sections present
+ANTI-BS:     ⚠️ 1 weak claim (rephrase "diversified")
+
+OVERALL: PASS WITH 2 WARNINGS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+### When QA Runs Automatically
+
+| Trigger | Levels Run |
+|---------|-----------|
+| Any financial output | Level 1 (numbers) |
+| CIM, teaser, buyer emails | Levels 1 + 2 (numbers + narrative) |
+| Valuation, QoE, deal structure | Levels 1 + 3 (numbers + logic) |
+| Full CIM or `/all` | All 5 levels |
+
+---
+
+## 10. Auto-Propagation
+
+When you update any field with `/update`, the agent tracks what's affected:
 
 | Field Changed | Outputs Affected |
 |--------------|-----------------|
 | Revenue | SDE margin, valuation, CIM financials, teaser, SBA model, buyer returns |
+| Add-backs | SDE, EBITDA, valuation, QoE, CIM financials, thesis |
 | Customer concentration | Risk flags, multiple adjustment, valuation, risk narratives, buyer targeting, LOI evaluation |
-| Owner role | Risk flags, multiple adjustment, CIM ops section, buyer targeting, transition plan |
-| Add-backs | SDE, EBITDA, valuation, QoE, CIM financials |
-| Asking price | Deal structure, SBA feasibility, buyer affordability, teaser |
+| Owner role | Risk flags, multiple adjustment, CIM ops section, buyer targeting, transition plan, thesis fear neutralizers |
+| Asking price | Deal structure, SBA feasibility, buyer affordability, teaser, strategy clearing price |
 
 After flagging affected outputs, the agent asks: *"Want me to regenerate any of these now?"*
 
 ---
 
-## Deal Lifecycle
+## 11. Deal Lifecycle
 
 ```
 /new [name]
     │
     ▼
-  INTAKE ─── /start or paste info
+  INTAKE ─────────── /start or paste info
     │
     ▼
-  CONTEXT COMPLETE ─── all critical fields filled
-    │
+  CONTEXT COMPLETE ── all critical fields filled
+    │                  (auto: thesis + risk flags generated)
     ├── /screening ─── Should we take this?
     ├── /readiness ─── Is seller ready?
     │
     ▼
-  VALUED ─── /valuation
+  VALUED ──────────── /valuation + /strategy
     │
     ▼
-  IN MARKET ─── /cim  /teaser
+  MARKETING ─────────  /cim + /teaser
     │
     ▼
-  BUYER OUTREACH ─── /buyers
+  OUTREACH ────────── /buyers
     │
     ▼
-  LOI STAGE ─── /loi
+  IOI REVIEW ──────── IOIs received
     │
     ▼
-  IN DILIGENCE ─── (manual update)
+  LOI STAGE ─────────  /loi
     │
     ▼
-  ARCHIVED ─── /archive (closed / dead / paused)
+  DILIGENCE ─────────  /update stage DILIGENCE
+    │
+    ▼
+  CLOSING ────────── /update stage CLOSING
+    │
+    ▼
+  ARCHIVED ────────── /archive (closed / dead / paused)
 ```
 
-Stage transitions happen automatically based on commands run. Override anytime with `/update stage [STAGE NAME]`.
+Stages transition automatically based on commands run. Override anytime with `/update stage [STAGE NAME]`. View history with `/timeline`.
+
+At each stage transition, the agent suggests what to do next.
 
 ---
 
-## File Index
+## 12. File Index
 
 ### System Configuration
 
@@ -336,125 +480,126 @@ Stage transitions happen automatically based on commands run. Override anytime w
 |---|------|---------|-----------|
 | 1 | `system_prompt.md` | Master instructions, commands, behavioral rules | Custom Instructions |
 
-### Core Logic
+### Core System
 
 | # | File | Purpose | Upload To |
 |---|------|---------|-----------|
 | 2 | `onboarding_flow.md` | Guided questionnaire + unstructured intake parsing | Project Knowledge |
 | 3 | `multi_deal_management.md` | Deal registry, dashboard, switching, comparison | Project Knowledge |
-| 4 | `web_research_protocol.md` | Search triggers, query library, source hierarchy | Project Knowledge |
-| 5 | `source_citation_rules.md` | Citation format, anti-hallucination rules | Project Knowledge |
+| 4 | `deal_memory.md` | Single source of truth + consistency rules | Project Knowledge |
+| 5 | `deal_lifecycle_engine.md` | Stage tracking, transitions, stage-appropriate behavior | Project Knowledge |
+
+### Intelligence Layer
+
+| # | File | Purpose | Upload To |
+|---|------|---------|-----------|
+| 6 | `web_research_protocol.md` | Search triggers, query library, source hierarchy | Project Knowledge |
+| 7 | `source_citation_rules.md` | Citation format, anti-hallucination rules | Project Knowledge |
+| 8 | `investment_thesis.md` | Thesis generation: headline, reasons, why now, fear neutralizers | Project Knowledge |
+| 9 | `deal_strategy.md` | Clearing price, buyer ranking, deal killers, process, negotiation | Project Knowledge |
+| 10 | `qa_checklist.md` | 5-level quality assurance system | Project Knowledge |
 
 ### Deal Analysis
 
 | # | File | Purpose | Upload To |
 |---|------|---------|-----------|
-| 6 | `valuation_logic.md` | Multiples, adjustments, revenue quality scoring | Project Knowledge |
-| 7 | `qoe_framework.md` | EBITDA bridge, working capital, revenue cuts | Project Knowledge |
-| 8 | `deal_structure.md` | SBA modeling, seller notes, earnouts | Project Knowledge |
-| 9 | `risk_framework.md` | Auto-detection rules, severity ratings, narratives | Project Knowledge |
+| 11 | `valuation_logic.md` | Multiples, adjustments, revenue quality scoring, scenarios | Project Knowledge |
+| 12 | `qoe_framework.md` | EBITDA bridge, working capital, revenue cuts, pro forma | Project Knowledge |
+| 13 | `deal_structure.md` | SBA modeling, seller notes, earnouts, affordability | Project Knowledge |
+| 14 | `risk_framework.md` | Auto-detection rules, severity ratings, mitigation narratives | Project Knowledge |
 
 ### Marketing & Outreach
 
 | # | File | Purpose | Upload To |
 |---|------|---------|-----------|
-| 10 | `cim_template.md` | Full CIM section structure | Project Knowledge |
-| 11 | `teaser_template.md` | Anonymous teaser structure | Project Knowledge |
-| 12 | `buyer_targeting.md` | Buyer personas, outreach templates, follow-up sequences | Project Knowledge |
+| 15 | `cim_template.md` | Full CIM structure with thesis integration | Project Knowledge |
+| 16 | `teaser_template.md` | Anonymous teaser structure | Project Knowledge |
+| 17 | `buyer_targeting.md` | Buyer personas, outreach templates, follow-up sequences | Project Knowledge |
 
 ### Deal Execution
 
 | # | File | Purpose | Upload To |
 |---|------|---------|-----------|
-| 13 | `loi_evaluation.md` | LOI comparison matrix, deal certainty scoring | Project Knowledge |
-| 14 | `seller_prep.md` | Pre-market readiness checklist | Project Knowledge |
-| 15 | `deal_screening.md` | Engagement screening, fee economics | Project Knowledge |
-| 16 | `engagement_guidance.md` | Broker fee structures, engagement terms | Project Knowledge |
+| 18 | `loi_evaluation.md` | LOI comparison matrix, deal certainty scoring, red flags | Project Knowledge |
+| 19 | `seller_prep.md` | Pre-market readiness checklist | Project Knowledge |
+| 20 | `deal_screening.md` | Engagement screening, fee economics, walk-away triggers | Project Knowledge |
+| 21 | `engagement_guidance.md` | Broker fee structures, engagement terms | Project Knowledge |
 
 ### Schemas (API Only)
 
-| # | File | Purpose | Upload To |
-|---|------|---------|-----------|
-| 17 | `input_schema.json` | Structured deal intake format | Local reference |
-| 18 | `output_schema.json` | Structured output parsing format | Local reference |
+| # | File | Purpose | Use |
+|---|------|---------|-----|
+| 22 | `input_schema.json` | Structured deal intake format | Local reference |
+| 23 | `output_schema.json` | Structured output parsing format | Local reference |
 
-**Total: 16 knowledge files + 1 system prompt + 2 schemas = 19 files**
-**Estimated context: ~28,000 tokens**
+**Total: 21 knowledge files · 1 system prompt · 2 schemas · ~35,000 tokens**
 
 ---
 
-CLAUDE PROJECT SETUP — v3.2
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+## 13. Setup Checklist
 
-CUSTOM INSTRUCTIONS:
-  □ system_prompt.md (updated with new commands)
+```
+CUSTOM INSTRUCTIONS
+  □  system_prompt.md
 
-PROJECT KNOWLEDGE:
-  
-  Core System:
-  □ onboarding_flow.md
-  □ multi_deal_management.md
-  □ deal_memory.md                  ← NEW
-  □ deal_lifecycle_engine.md        ← NEW
+PROJECT KNOWLEDGE — Core System
+  □  onboarding_flow.md
+  □  multi_deal_management.md
+  □  deal_memory.md
+  □  deal_lifecycle_engine.md
 
-  Intelligence Layer:
-  □ web_research_protocol.md
-  □ source_citation_rules.md
-  □ investment_thesis.md            ← NEW
-  □ deal_strategy.md                ← NEW
-  □ qa_checklist.md                 ← NEW
+PROJECT KNOWLEDGE — Intelligence Layer
+  □  web_research_protocol.md
+  □  source_citation_rules.md
+  □  investment_thesis.md
+  □  deal_strategy.md
+  □  qa_checklist.md
 
-  Deal Analysis:
-  □ valuation_logic.md (updated — trimmed DCF)
-  □ qoe_framework.md
-  □ deal_structure.md
-  □ risk_framework.md
+PROJECT KNOWLEDGE — Deal Analysis
+  □  valuation_logic.md
+  □  qoe_framework.md
+  □  deal_structure.md
+  □  risk_framework.md
 
-  Marketing & Outreach:
-  □ cim_template.md (updated — thesis integration)
-  □ teaser_template.md
-  □ buyer_targeting.md
+PROJECT KNOWLEDGE — Marketing & Outreach
+  □  cim_template.md
+  □  teaser_template.md
+  □  buyer_targeting.md
 
-  Deal Execution:
-  □ loi_evaluation.md
-  □ seller_prep.md
-  □ deal_screening.md
-  □ engagement_guidance.md
+PROJECT KNOWLEDGE — Deal Execution
+  □  loi_evaluation.md
+  □  seller_prep.md
+  □  deal_screening.md
+  □  engagement_guidance.md
 
-SETTINGS:
-  □ Web Search → ENABLED
-
-TOTAL: 20 knowledge files + 1 system prompt = 21 files
-ESTIMATED CONTEXT: ~35,000 tokens
----
-----
-
+SETTINGS
+  □  Web Search → ENABLED
+```
 
 ### First Use
 
 ```
-  □ Type /new [deal name]
-  □ Paste deal info OR type /start
-  □ Agent parses → organizes → asks for gaps
-  □ Run /screening (should we take this deal?)
-  □ Run /readiness (is the seller ready?)
-  □ Run /valuation (what's it worth?)
-  □ Run /all (generate everything)
-  □ Add more deals with /new
-  □ View pipeline with /deals
+  □  Type /new [deal name]
+  □  Paste deal info OR type /start
+  □  Agent parses → organizes → asks for gaps
+  □  Run /screening — should we take this deal?
+  □  Run /readiness — is the seller ready?
+  □  Run /valuation — what's it worth?
+  □  Run /strategy — how do we run this deal?
+  □  Run /all — generate everything
+  □  Run /qa — verify everything before sending
+  □  Add more deals with /new
+  □  View pipeline with /deals
 ```
 
 ---
 
-## API Integration
+## 14. API Integration
 
 For developers building this into a custom application.
 
-### Basic Implementation
-
 ```python
 import anthropic
-import json
 import os
 
 class MAAAgent:
@@ -466,8 +611,11 @@ class MAAAgent:
     def _build_system(self):
         files = [
             "system_prompt.md", "onboarding_flow.md",
-            "multi_deal_management.md",
+            "multi_deal_management.md", "deal_memory.md",
+            "deal_lifecycle_engine.md",
             "web_research_protocol.md", "source_citation_rules.md",
+            "investment_thesis.md", "deal_strategy.md",
+            "qa_checklist.md",
             "valuation_logic.md", "qoe_framework.md",
             "deal_structure.md", "risk_framework.md",
             "cim_template.md", "teaser_template.md",
@@ -495,25 +643,21 @@ class MAAAgent:
         self.messages.append({"role": "assistant", "content": reply})
         return reply
 
-
 # Usage
 agent = MAAAgent()
 print(agent.chat("/new ABC Roofing"))
 print(agent.chat("Roofing company in Charlotte NC, $4.2M revenue, $850K SDE..."))
 print(agent.chat("/valuation"))
+print(agent.chat("/strategy"))
+print(agent.chat("/qa"))
 print(agent.chat("/deals"))
 ```
 
-### Code Status
-
-> ⚠️ This is reference architecture, not production code.
-> Before deployment, add: error handling, rate limiting,
-> streaming, token management, caching, and tests.
-> Estimated dev time to production: 20–40 hours.
+> ⚠️ **Code Status:** This is reference architecture, not production code. Before deployment, add error handling, rate limiting, streaming, token management, caching, and tests. Estimated dev time to production: 20–40 hours.
 
 ---
 
-## Maintenance
+## 15. Maintenance
 
 | Task | Frequency | Source |
 |------|-----------|--------|
@@ -523,57 +667,59 @@ print(agent.chat("/deals"))
 | Optimize outreach templates | After every 50 sends | Response rate data |
 | Full system review | Annually | All files against current market |
 
-### How to Update Embedded Data
-
+**How to update embedded data:**
 1. Download latest BizBuySell Insight Report (free, quarterly)
 2. Open `valuation_logic.md`
 3. Update the SDE and EBITDA multiple tables
-4. Add date stamp: `⚠️ Last reviewed: [DATE] by [NAME]`
+4. Add: `⚠️ Last reviewed: [DATE] by [NAME]`
 5. Re-upload to Project Knowledge
 
 ---
 
-## Limitations
+## 16. Limitations
 
 | Limitation | Impact | Workaround |
 |-----------|--------|------------|
-| **Paywalled data sources** | Live search won't access PitchBook, Capital IQ, GF Data | Agent recommends manual lookup; uses embedded fallbacks |
-| **Web search reliability** | LMM transaction multiples found ~30-40% of the time | Embedded benchmarks used as fallback, clearly flagged |
-| **Content, not design** | CIM output is structured text, not a formatted PDF | Format in Canva, Google Docs, or Word before sending to buyers |
-| **US-focused** | Multiples, SBA rules, deal structures assume US transactions | Modify for international deals |
+| **Paywalled data** | Can't access PitchBook, Capital IQ, GF Data | Recommends manual lookup; uses embedded fallbacks |
+| **Web search reliability** | LMM multiples found ~30–40% of the time | Embedded benchmarks used as fallback, clearly flagged |
+| **Content, not design** | CIM is structured text, not a formatted PDF | Format in Canva, Google Docs, or Word before sending |
+| **US-focused** | Multiples, SBA rules, structures assume US | Modify knowledge files for international deals |
 | **Not legal/financial advice** | Analytical tool only | Always verify with CPA and attorney |
-| **$1M–$5M EBITDA optimized** | Embedded multiples tuned for this range | Adjust `valuation_logic.md` for deals outside this range |
+| **$1M–$5M EBITDA** | Embedded multiples tuned for this range | Adjust `valuation_logic.md` for other ranges |
 
 ---
 
-## Customization & Support
-
-### Common Refinements
+## 17. Customization
 
 | What to Customize | Which File to Edit |
 |-------------------|--------------------|
-| Multiple ranges for your industry focus | `valuation_logic.md` |
+| Multiple ranges for your industry | `valuation_logic.md` |
 | Industry-specific risk factors | `risk_framework.md` |
 | Outreach email voice and tone | `buyer_targeting.md` |
-| CIM section structure or emphasis | `cim_template.md` |
+| CIM section structure | `cim_template.md` |
+| Investment thesis style | `investment_thesis.md` |
+| Deal strategy frameworks | `deal_strategy.md` |
+| QA check thresholds | `qa_checklist.md` |
 | Onboarding questions | `onboarding_flow.md` |
 | Fee structures | `engagement_guidance.md` |
-| SBA eligibility criteria | `deal_structure.md` |
+| SBA criteria | `deal_structure.md` |
 
-### Improving the Agent Over Time
-
+**To improve the agent over time:**
 1. Test on a real deal (anonymize sensitive data)
 2. Note where outputs miss the mark
 3. Edit the relevant `.md` file
 4. Re-upload to Project Knowledge
 5. Repeat
 
-### Version History
+---
 
-| Version | Date | Changes |
-|---------|------|---------|
-| v3.1 | Current | Multi-deal management, unstructured intake, deal dashboard |
-| v3.0 | — | Interactive onboarding, auto-propagation, command system |
-| v2.1 | — | QoE framework, deal structuring, LOI evaluation, seller prep |
-| v2.0 | — | Live web research, source citations, anti-hallucination rules |
-| v1.0 | — | Core valuation, CIM/teaser templates, buyer targeting, risk framework |
+## 18. Version History
+
+| Version | Changes |
+|---------|---------|
+| **v3.2** (Current) | Deal Memory layer, investment thesis generator, deal strategy engine, 5-level QA system, deal lifecycle engine, cross-output consistency enforcement |
+| v3.1 | Multi-deal management, unstructured intake, deal dashboard, fuzzy deal switching |
+| v3.0 | Interactive `/start` onboarding, auto-propagation, command system |
+| v2.1 | QoE framework, deal structuring, LOI evaluation, seller prep, deal screening |
+| v2.0 | Live web research, source citations, anti-hallucination rules |
+| v1.0 | Core valuation, CIM/teaser templates, buyer targeting, risk framework |
