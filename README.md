@@ -83,54 +83,48 @@ Then either type `/start` for guided onboarding, or paste everything you know ab
 
 ## Commands
 
-### Deal Management
+DEAL MANAGEMENT
+  /new [name]           Create new deal
+  /deals                Pipeline dashboard
+  /deals all            Include archived
+  /deal [name]          Switch active deal
+  /archive [name]       Archive deal
+  /rename [old] [new]   Rename deal
+  /compare [a] [b]      Compare two deals
 
-| Command | What It Does |
-|---------|-------------|
-| `/new [name]` | Create a new deal and make it active |
-| `/deals` | Dashboard of all active deals |
-| `/deals all` | Dashboard including archived deals |
-| `/deal [name]` | Switch active deal (fuzzy matching supported) |
-| `/archive [name]` | Archive a deal with reason (closed/dead/paused) |
-| `/rename [old] [new]` | Rename a deal |
-| `/compare [a] [b]` | Side-by-side comparison of two deals |
+ONBOARDING
+  /start                Guided 7-phase questionnaire
+  (or just paste info)  Agent parses automatically
 
-### Onboarding
+ANALYSIS
+  /valuation            Valuation with live comps
+  /cim                  Full CIM
+  /teaser               Anonymous teaser
+  /buyers               Buyer list + outreach
+  /risks                Risk report
+  /qoe                  Quality of Earnings
+  /structure            Deal structure models
+  /all                  Generate everything
 
-| Command | What It Does |
-|---------|-------------|
-| `/start` | Launch guided 7-phase questionnaire |
-| *(or just paste info)* | Agent parses, organizes, asks for gaps |
+STRATEGY (NEW)
+  /strategy             Full deal strategy
+  /thesis               Investment thesis
+  /timeline             Deal event history
 
-### Analysis
+EVALUATION
+  /loi [terms]          Evaluate LOI(s)
+  /readiness            Seller readiness check
+  /screening            Engagement screening
 
-| Command | What It Does |
-|---------|-------------|
-| `/valuation` | Full valuation with live comps + bear/base/bull |
-| `/cim` | Complete CIM with live industry data |
-| `/teaser` | Anonymous 1-page teaser |
-| `/buyers` | Buyer list + outreach emails with live research |
-| `/risks` | Risk report with auto-detected flags |
-| `/qoe` | Quality of Earnings analysis |
-| `/structure` | SBA model + deal structure scenarios |
-| `/all` | Generate all of the above |
+QUALITY (NEW)
+  /check                Quick consistency check
+  /qa                   Full 5-level QA
 
-### Evaluation
-
-| Command | What It Does |
-|---------|-------------|
-| `/loi [terms]` | Evaluate one or more LOIs |
-| `/readiness` | Seller readiness assessment |
-| `/screening` | Should we take this engagement? |
-
-### Context Management
-
-| Command | What It Does |
-|---------|-------------|
-| `/status` | Show deal context summary + outputs generated |
-| `/update [field] [value]` | Update a field, flags affected outputs |
-| `/gaps` | Show all missing or incomplete fields |
-| `/export` | Export deal context as JSON |
+CONTEXT
+  /status               Deal summary + outputs
+  /update [field] [val] Update field
+  /gaps                 Show missing fields
+  /export               Export as JSON
 
 ### Examples
 
@@ -389,34 +383,52 @@ Stage transitions happen automatically based on commands run. Override anytime w
 
 ---
 
-## Setup Checklist
+CLAUDE PROJECT SETUP — v3.2
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-### Claude.ai Project Setup
+CUSTOM INSTRUCTIONS:
+  □ system_prompt.md (updated with new commands)
 
-```
-CUSTOM INSTRUCTIONS
-  □ system_prompt.md                → Paste into Custom Instructions
+PROJECT KNOWLEDGE:
+  
+  Core System:
+  □ onboarding_flow.md
+  □ multi_deal_management.md
+  □ deal_memory.md                  ← NEW
+  □ deal_lifecycle_engine.md        ← NEW
 
-PROJECT KNOWLEDGE
-  □ onboarding_flow.md              → Upload
-  □ multi_deal_management.md        → Upload
-  □ web_research_protocol.md        → Upload
-  □ source_citation_rules.md        → Upload
-  □ valuation_logic.md              → Upload
-  □ qoe_framework.md                → Upload
-  □ deal_structure.md               → Upload
-  □ risk_framework.md               → Upload
-  □ cim_template.md                 → Upload
-  □ teaser_template.md              → Upload
-  □ buyer_targeting.md              → Upload
-  □ loi_evaluation.md               → Upload
-  □ seller_prep.md                  → Upload
-  □ deal_screening.md               → Upload
-  □ engagement_guidance.md          → Upload
+  Intelligence Layer:
+  □ web_research_protocol.md
+  □ source_citation_rules.md
+  □ investment_thesis.md            ← NEW
+  □ deal_strategy.md                ← NEW
+  □ qa_checklist.md                 ← NEW
 
-SETTINGS
-  □ Web Search                      → Enabled
-```
+  Deal Analysis:
+  □ valuation_logic.md (updated — trimmed DCF)
+  □ qoe_framework.md
+  □ deal_structure.md
+  □ risk_framework.md
+
+  Marketing & Outreach:
+  □ cim_template.md (updated — thesis integration)
+  □ teaser_template.md
+  □ buyer_targeting.md
+
+  Deal Execution:
+  □ loi_evaluation.md
+  □ seller_prep.md
+  □ deal_screening.md
+  □ engagement_guidance.md
+
+SETTINGS:
+  □ Web Search → ENABLED
+
+TOTAL: 20 knowledge files + 1 system prompt = 21 files
+ESTIMATED CONTEXT: ~35,000 tokens
+---
+----
+
 
 ### First Use
 
