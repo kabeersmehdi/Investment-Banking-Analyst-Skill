@@ -536,6 +536,78 @@ At each stage transition, the agent suggests what to do next.
 
 ---
 
+## Deployment
+
+### Option A: Claude Code Skill
+
+For developers using Claude Code (CLI/IDE).
+
+**Directory structure:**
+```
+~/.claude/skills/ma-analyst-agent/
+├── SKILL.md
+├── core/
+│   ├── onboarding_flow.md
+│   ├── multi_deal_management.md
+│   ├── deal_memory.md
+│   └── deal_lifecycle_engine.md
+├── intelligence/
+│   ├── web_research_protocol.md
+│   ├── source_citation_rules.md
+│   ├── investment_thesis.md
+│   ├── deal_strategy.md
+│   └── qa_checklist.md
+├── analysis/
+│   ├── valuation_logic.md
+│   ├── qoe_framework.md
+│   ├── deal_structure.md
+│   └── risk_framework.md
+├── marketing/
+│   ├── cim_template.md
+│   ├── teaser_template.md
+│   └── buyer_targeting.md
+├── execution/
+│   ├── loi_evaluation.md
+│   ├── seller_prep.md
+│   ├── deal_screening.md
+│   └── engagement_guidance.md
+└── schemas/
+    ├── input_schema.json
+    └── output_schema.json
+```
+
+**Setup:**
+```bash
+mkdir -p ~/.claude/skills/ma-analyst-agent/{core,intelligence,analysis,marketing,execution,schemas}
+# Copy all files into their respective directories
+# SKILL.md goes in the root of ma-analyst-agent/
+```
+
+Claude Code will auto-discover the skill and activate it when 
+M&A-related topics are discussed or any `/command` is used.
+
+### Option B: Claude.ai Project
+
+For brokers using Claude in the browser. No code required.
+
+1. Go to claude.ai → Projects → Create Project
+2. Paste `SKILL.md` content (below the YAML) into Custom Instructions
+3. Upload all 20 `.md` files to Project Knowledge (flat, no folders)
+4. Enable web search
+5. Type `/new [deal name]`
+
+### Option C: Anthropic API
+
+For developers building custom applications.
+
+```python
+# See API Integration section below
+```
+
+
+
+---
+
 ## 13. Setup Checklist
 
 ```
