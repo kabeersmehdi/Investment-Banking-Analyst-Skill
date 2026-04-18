@@ -157,6 +157,37 @@ If DCF implies materially lower value, flag for client.
 
 ---
 
+
+## REVENUE QUALITY SCORING
+
+| Revenue Type | Quality Score | Multiple Impact |
+|-------------|--------------|-----------------|
+| Contracted recurring (auto-renew) | 10/10 | +1.0x to +1.5x |
+| Subscription / retainer | 9/10 | +0.75x to +1.25x |
+| Repeat non-contracted (same customers, no contract) | 7/10 | +0.25x to +0.50x |
+| Repeat project-based (same customers, RFP each time) | 5/10 | Baseline |
+| New project-based (always hunting) | 3/10 | -0.25x to -0.50x |
+| One-time / transactional | 2/10 | -0.50x to -1.00x |
+
+### Blended Revenue Quality Score
+Calculate: (Revenue Type A % × Score) + (Revenue Type B % × Score) = Weighted Score
+
+Example:
+- 40% contracted recurring (10) + 35% repeat non-contracted (7) + 25% project (5)
+- Weighted Score = (0.40 × 10) + (0.35 × 7) + (0.25 × 5) = 7.7 / 10
+
+| Weighted Score | Valuation Zone |
+|---------------|---------------|
+| 8.0–10.0 | Premium — top of multiple range |
+| 6.0–7.9 | Standard — mid-range multiple |
+| 4.0–5.9 | Discounted — low end of range |
+| <4.0 | Significant discount — lifestyle risk |
+
+
+
+
+
+
 ## VALUATION RED FLAGS
 
 ⚠️ Revenue declining 2+ consecutive years
