@@ -190,6 +190,29 @@ Example:
 
 
 
+## MULTI-SERVICE / HYBRID BUSINESSES
+
+When a business spans multiple service lines:
+
+### Step 1: Revenue-Weight the Multiple
+| Service Line | % Revenue | Industry Multiple | Weighted |
+|-------------|----------|-------------------|----------|
+| Roofing | 60% | 3.5x SDE | 2.10x |
+| Siding | 25% | 3.0x SDE | 0.75x |
+| Gutters | 15% | 2.5x SDE | 0.375x |
+| **Blended Multiple** | **100%** | | **3.225x** |
+
+### Step 2: Search for Multiples for Each Line
+Execute separate web searches for each major service line
+(any line >15% of revenue).
+
+### Step 3: Adjust for Diversification
+Multi-service businesses get a +0.25x to +0.50x premium
+for revenue diversification (less risk of single-service
+demand shock).
+
+
+
 
 
 
