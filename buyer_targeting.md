@@ -1,5 +1,33 @@
 # Buyer Targeting Logic — LMM M&A Analyst Agent v2.0
 
+# REWRITE outreach templates to be:
+# - Shorter (under 100 words for body)
+# - More specific (reference buyer's actual activity)
+# - Pattern-interrupt subject lines
+
+## IMPROVED Template — Strategic Buyer
+
+Subject: Saw your [RECENT ACQUISITION] — have a similar fit in [STATE]
+
+[First Name] —
+
+Noticed [COMPANY] acquired [TARGET] in [MONTH].
+
+I'm representing a similar business in [STATE]:
+• $[X]M revenue / $[X]M EBITDA
+• [Key differentiator in 5 words]
+• [Geography / customer / capability hook]
+
+Would complement what you did with [TARGET].
+
+NDA + teaser if interested. 2 minutes.
+
+[Broker Name]
+[Phone]
+
+
+
+
 ## LIVE RESEARCH REQUIRED
 Before generating a buyer list, the agent MUST search for:
 1. Active acquirers in the specific industry
