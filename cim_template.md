@@ -1,5 +1,33 @@
 # CIM Template — Confidential Information Memorandum v2.0
 
+
+## POST-GENERATION FORMATTING GUIDE
+
+The agent produces CIM CONTENT, not a formatted document.
+After generation, the broker must:
+
+1. COPY content into a CIM template (Google Docs / Word / Canva)
+2. ADD the following visual elements:
+   - Cover page with company logo (or project codename)
+   - Revenue trend chart (bar chart, 3 years)
+   - EBITDA trend chart (bar chart, 3 years)
+   - SDE bridge waterfall chart
+   - Customer diversification pie chart
+   - Geographic map (service area)
+   - Facility photos (3-5 images)
+   - Team photo (if available)
+   - Org chart (visual, not text)
+3. FORMAT with:
+   - Consistent headers/footers
+   - Page numbers
+   - Table of contents
+   - Legal disclaimer page
+   - NDA reminder on cover
+
+
+
+
+
 ## DOCUMENT HEADER
 **CONFIDENTIAL INFORMATION MEMORANDUM**
 [Company Name or "Project [Codename]"]
