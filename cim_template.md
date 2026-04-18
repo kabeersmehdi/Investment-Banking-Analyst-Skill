@@ -2,6 +2,21 @@
 
 ## All fields auto-populate from DEAL CONTEXT
 
+## THESIS INTEGRATION (Required)
+
+Before generating any CIM section, load the Investment Thesis
+from Deal Memory:
+- Headline → CIM Executive Summary opening line
+- Three Reasons → CIM Investment Highlights bullets
+- Why Now → CIM Buyer Rationale section
+- Fear Neutralizers → CIM Risk section mitigation narratives
+
+The CIM is the investment thesis in long form.
+Every section should reinforce the thesis, not contradict it.
+
+
+
+
 ## STRUCTURE
 1. Executive Summary — [from context: description, highlights, ask]
 2. Industry Overview — 🌐 [live search: market size, CAGR, trends]
