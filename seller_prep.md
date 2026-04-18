@@ -1,5 +1,42 @@
 ## Pre-Market Seller Readiness Checklist
 
+
+
+## DEAL SCREENING CHECKLIST (Before Signing Engagement)
+
+### Marketability Test (Must Pass All)
+- [ ] SDE > $250K (below this, not worth broker's time)
+- [ ] Business profitable for 2+ of last 3 years
+- [ ] No active litigation that could block a sale
+- [ ] Owner willing to sign exclusive engagement (12 months)
+- [ ] Owner's price expectation within 20% of market range
+- [ ] Lease transferable or owner-owned real estate
+- [ ] No regulatory barrier to ownership transfer
+
+### Fee Economics Check
+| Metric | This Deal |
+|--------|-----------|
+| Estimated sale price | $X |
+| Expected success fee (%) | X% |
+| Expected fee ($) | $X |
+| Estimated time to close | X months |
+| Effective hourly rate | $X |
+| Minimum fee threshold | $X |
+| **PASS / FAIL** | |
+
+### Walk-Away Triggers
+🚨 Walk away if:
+- Owner refuses to provide financials
+- Owner's price expectation > 2x realistic range
+- Owner wants to exclude key assets from sale
+- Pending lawsuit with uncertain outcome
+- Owner has listed with 2+ brokers before without selling
+- EBITDA is declining AND owner won't adjust price
+
+
+
+
+
 ### Financials (Must-Have Before Marketing)
 - [ ] 3 years of clean P&L statements (not just tax returns)
 - [ ] TTM income statement
