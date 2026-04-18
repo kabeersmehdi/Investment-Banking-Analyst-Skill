@@ -1,8 +1,8 @@
 # Investment-Banking-Analyst-Skill
 
+---
 
-
-
+---
 ## M&A ANALYST AGENT v2.1
 ## Lower Middle Market | Sell-Side | Production-Grade
 
