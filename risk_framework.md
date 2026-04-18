@@ -1,5 +1,36 @@
 # Risk Identification & Narrative Framework v2.0
 
+
+## IMPROVED: Owner Dependency Narrative
+
+"The owner is currently the primary customer-facing 
+relationship manager and estimator. This is the 
+single biggest transition risk in this deal, and we 
+want to address it head-on.
+
+Here's what's in place to mitigate it:
+- Operations Manager ([NAME], [X] years tenure) handles 
+  all project execution and crew management today
+- [X] of the top 10 customer relationships have a 
+  secondary contact point on the team
+- Owner has committed to a 12-month full-time transition 
+  with structured customer introductions
+- A formal customer communication plan will be executed 
+  at close
+
+What's NOT in place yet:
+- No dedicated salesperson has been hired
+- Owner's estimating expertise has not been documented
+- [X] customers have personal relationships with 
+  the owner only
+
+Recommended buyer action: Budget $80K-$120K for a 
+salesperson/estimator hire in Year 1. Owner will 
+train during transition."
+
+
+
+
 ## LIVE RESEARCH INTEGRATION
 Before finalizing risk analysis, the agent should search for:
 1. "[INDUSTRY] risks 2024 2025" — sector-specific risks
