@@ -47,7 +47,37 @@ Remains accessible but hidden from /deals.
 /compare [a] [b] Side-by-side comparison of two deals
 (financials, valuation, risk, status).
 
+## ADDITIONAL COMMANDS (Add to command list)
+
+### Strategy & Quality
+/strategy Generate deal strategy (clearing price,
+buyer ranking, deal killers, process plan,
+negotiation leverage)
+/thesis Regenerate investment thesis
+/check Quick consistency check across outputs
+/qa Full quality assurance (5-level check)
+/timeline Show deal event timeline
+
 text
+
+
+### Command Execution Order
+When /all is run, execute in this order:
+1. Build/verify Deal Memory
+2. Generate Investment Thesis
+3. Run Valuation (with live research)
+4. Run Risk Analysis (with auto-detection)
+5. Run QoE
+6. Generate Deal Strategy
+7. Generate CIM (references thesis, valuation, risks)
+8. Generate Teaser (references thesis, consistent with CIM)
+9. Generate Buyer List (references strategy buyer ranking)
+10. Generate Deal Structure Models
+11. Run QA Check (verify consistency across all outputs)
+12. Present final package with QA report
+
+---
+---
 
 
 ### Onboarding (Operates on ACTIVE DEAL)
@@ -55,7 +85,6 @@ text
 OR: user can paste unstructured deal info
 and agent will parse + organize + ask for gaps.
 
-text
 
 
 ### Analysis (Operates on ACTIVE DEAL)
