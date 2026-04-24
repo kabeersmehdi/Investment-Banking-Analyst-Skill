@@ -7,3 +7,47 @@ Design principles
 📏 One source of truth: canonical metrics + canonical number formatting + terminology registry.
 🧼 Clarity & professionalism: no draft comments, consistent formatting, explicit assumptions/definitions.
 🔒 Confidentiality Safe Mode (default): no client names, no non-public financials, no data-room text; scrubbed audit logging.
+
+🎯 What it checks (the “MD lens”)
+✅ Tier 1 — Must-have (highest leverage)
+Grammar & terminology: typos, awkward phrasing, passive voice, inconsistent terms (“Seller” vs “Vendor”).
+Number consistency: canonical format ($X.Xm or $X,XXX,XXX), consistent rounding, same metric matches across slides/tables/models, table sums add up.
+Date consistency: FY / projection period / transaction date consistent across narrative, tables, model tabs.
+Formatting & client-readiness: fonts/colors, slide structure, no internal comments/draft notes.
+📊 Tier 2 — IB/M&A-specific (credibility killers)
+Valuation sanity: DCF assumptions coherent (growth vs discount rate, terminal multiple vs comps), comps multiple within reasonable sector band, EV bridge present and correct (EV ↔ Equity Value, net debt, options/minority interest if applicable).
+CIM/pitch structure: required sections present and ordered (Company Overview, Financial Summary, Projections + assumptions, Growth Plan, Transaction Overview, Appendix).
+Narrative ↔ numbers: growth claims supported by CAGR/margins; risks paired with mitigations; no contradictions between story and model.
+Financial cross-check: P&L → BS → CF flow integrity (net income, depreciation, working capital, retained earnings).
+🏢 Tier 3 — Stony Hill / sell-side specific (what an MD here would probe)
+Seller narrative consistency: “why sell” is specific and credible; value creation plan is concrete and supportable.
+Valuation range discipline: asking range aligns with multiple + financial profile; QoE adjustments documented and defensible.
+Professional polish: consistent appendix definitions, explicit sources for each key figure.
+📋 Output: the MD-style punch list (what you’ll actually act on)
+The default report is a ranked punch list with:
+
+Severity: Critical / High / Medium / Low
+Issue + location: exact slide/table/model tab/cell/page
+Why it matters: buyer/seller attack surface
+Recommended fix: precise, defensible change
+Owner: Analyst / Associate / MD (suggested)
+Example excerpt
+
+Rank	Severity	Issue	Location	Why it kills credibility	Recommended fix	Owner
+1	Critical	EBITDA inconsistent ($5.0m vs $5m)	Slide 4 vs Slide 7	Buyer will challenge numbers immediately	Canonicalize to $5.0m everywhere	Analyst
+2	Critical	Missing EV bridge	Valuation page	Buyer will demand it in diligence	Add explicit EV ↔ Equity bridge	Analyst
+3	High	Table total $12.4m vs sum $12.35m	Financial summary table	Signals sloppy diligence	Reconcile or state rounding policy	Analyst
+⚙️ Configuration (how to make it your firm’s standard)
+config/rules.yaml (core guardrails)
+Canonical number format: $X.Xm (one decimal) or $X,XXX,XXX (whole dollars). Choose one.
+Rounding policy: headline figures vs line items; tolerance for sum drift.
+Terminology registry: canonical terms (e.g., EBITDA, Net Debt, Enterprise Value).
+Required CIM sections: enforce your template’s exact section names/order.
+Tolerance rules: how close two instances of the same metric must be (e.g., ±$0.1m or ±0.5%).
+config/industry_ranges.yaml (non-sensitive)
+Sector-based EBITDA multiple bands (e.g., software 8.5x–12.0x; industrials 6.0x–9.0x).
+Used for valuation sanity checks; should be non-sensitive, generic, and auditable.
+config/confidentiality.yaml (safe-mode defaults)
+safe_mode: true by default.
+Redaction rules (client names, emails, confidential labels).
+Audit policy (no raw client text; retain hashes/check counts only).
