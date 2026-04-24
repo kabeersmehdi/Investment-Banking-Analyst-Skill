@@ -1,0 +1,9 @@
+Purpose: A credibility-first review tool for analyst deliverables (CIMs, pitch books, financial summaries, models, valuation exhibits) that behaves like an MD at a lower-middle-market M&A advisory firm (e.g., Stony Hill): prioritize the issues that will kill buyer/seller confidence, think adversarially, enforce one source of truth, and produce a short, ranked punch list (“8 must-fix items”) rather than a long nitpick list.
+
+Design principles
+
+✅ Prioritization over volume: Critical / High / Medium / Low, with exact locations and actionable fixes.
+🧠 Adversarial buyer lens: flags valuation/comps/DCF inconsistencies, missing EV bridge, unsupported claims, inconsistent narratives.
+📏 One source of truth: canonical metrics + canonical number formatting + terminology registry.
+🧼 Clarity & professionalism: no draft comments, consistent formatting, explicit assumptions/definitions.
+🔒 Confidentiality Safe Mode (default): no client names, no non-public financials, no data-room text; scrubbed audit logging.
