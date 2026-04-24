@@ -1,0 +1,34 @@
+[Sample sanitized deliverable excerpt — anonymized, no client identifiers]
+
+Slide 4 — Financial Summary (Headline Figures)
+- Revenue: $25.0m (FY24)
+- EBITDA: $5.0m (FY24)
+
+Slide 7 — Valuation Exhibit
+- Implied EV: $55.0m
+- Implied multiple: 11.0x EBITDA (using $5m EBITDA)
+
+Appendix — Trading Comps
+- Software comps band: 8.5x–10.5x EBITDA
+- Selected comp multiple used in exhibit: 11.0x
+
+Slide 5 — Projections
+- FY25 Revenue: $32.0m (step-change vs FY24 $25.0m; no driver noted)
+
+Slide 2 — Transaction Overview
+- “The Company is exploring strategic alternatives.”
+
+Valuation Exhibit — EV Bridge section
+- (Missing: no EV ↔ Equity bridge shown)
+
+Slide 3 — Company Overview (Speaker note)
+- “TK — confirm customer concentration”
+
+
+
+
+Notes:
+- Terminology varies: “Seller” on Slide 2, “Vendor” on Slide 5.
+- Figures are presented with inconsistent rounding ($5.0m vs $5m).
+Important: This is intentionally structured to trigger the key credibility checks (inconsistent EBITDA, missing EV bridge, multiple outside comps band, unexplained step-change, generic narrative, draft comment, terminology inconsistency).
+
