@@ -1,0 +1,32 @@
+{
+  "credibility": [
+    "inconsistent_numbers",
+    "totals_not_matching",
+    "metric_mismatch",
+    "rounding_drift",
+    "conflicting_figures"
+  ],
+  "valuation": [
+    "missing_ev_bridge",
+    "multiple_mismatch",
+    "dcf_inconsistency",
+    "terminal_multiple_mismatch",
+    "assumptions_not_documented",
+    "comps_band_violation"
+  ],
+  "narrative": [
+    "unsupported_growth_claim",
+    "margin_mismatch",
+    "unexplained_step_change",
+    "generic_why_sell",
+    "contradiction_story_vs_data",
+    "insufficient_risk_mitigation"
+  ],
+  "client_readiness": [
+    "internal_comments",
+    "inconsistent_terminology",
+    "inconsistent_formatting",
+    "missing_required_sections",
+    "unclear_definitions"
+  ]
+}
